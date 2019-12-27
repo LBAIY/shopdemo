@@ -15,6 +15,57 @@ App({
       })
     }
 
-    this.globalData = {}
+    this.globalData = {
+      cart: [],
+      carts: [],
+      cartTotal: 0,
+      cartTotalPrice: 0,
+      classifyList: {
+        fruits: [[
+          {
+            id:0,
+            stock:1,
+            name: '新鲜橙子',
+            price: 13,
+            introduce: '橙子起源于东南亚。橙树属小乔木。',
+            url: 'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4056467868,1274190614&fm=26&gp=0.jpg',
+            selected: false,
+            num:0
+          },
+          {
+            id:1,
+            stock: 1,
+            name: '蓝莓',
+            price: 20,
+            introduce: '蓝莓本身营养丰富,食用之后有益于身体健康,是世界粮农组织推荐的五大健康水果之一。',
+            url: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2441061435,3917792559&fm=26&gp=0.jpg',
+            selected: false,
+            num: 0
+          }
+        ], [
+          {
+            id: 2,
+            stock: 1,
+            name: '新鲜橙子',
+            price: 13,
+            introduce: '橙子起源于东南亚。橙树属小乔木。',
+            url: 'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4056467868,1274190614&fm=26&gp=0.jpg',
+              selected: false,
+              num: 0
+          },
+          {
+            id: 3,
+            stock: 1,
+            name: '蓝莓',
+            price: 20,
+            introduce: '蓝莓本身营养丰富,食用之后有益于身体健康,是世界粮农组织推荐的五大健康水果之一。',
+            url: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2441061435,3917792559&fm=26&gp=0.jpg',
+            selected: false,
+            num: 0
+          }
+        ]]
+      }
+    }
+
   }
 })
