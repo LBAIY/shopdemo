@@ -55,5 +55,11 @@
     </navigator>
   </view>
 
+ <!-- 商品分类 -->
+  <view class="uploader">
+    <navigator url="../type/type" open-type="navigate" class="uploader-text">
+      <text>零食种类</text>
+    </navigator>
+  </view>
 
 </view>
