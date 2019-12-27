@@ -1,3 +1,0 @@
-<!--miniprogram/pages/type.wxml-->
-<text>miniprogram/pages/type.wxml</text>
-<button size="mini" type="default" bindtap="selectType">糖果</button>
