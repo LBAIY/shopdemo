@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="search">
+    <navigator url="/pages/search/search" class="input">
+      <image class="icon"></image>
+      <text class="txt">商品</text>
+    </navigator>
+  </view>
+  <swiper class="banner" indicator-dots="true"
+    autoplay="true" interval="2000" duration="500">
+      <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
+        <image src="{{item.url}}" background-size="cover"></image>
+      </swiper-item>
+  </swiper>
+
+</view>
