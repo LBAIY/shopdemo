@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/user/user",
+    "pages/commodity/commodity",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",
@@ -22,6 +24,34 @@
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
   },
+
+"tabBar": {
+  "backgroundColor": "#fafafa",
+  "borderStyle": "white",
+  "selectedColor": "#00b38a",
+  "color": "#666",
+  "list": [
+    {
+      "pagePath": "pages/index/index",
+      "iconPath": "images/home_unselect.png",
+      "selectedIconPath": "images/home_select.png",
+      "text": "首页"
+    },
+    {
+      "pagePath": "pages/commodity/commodity",
+      "iconPath": "images/list_unselect.png",
+      "selectedIconPath": "images/list_select.png",
+      "text": "商品"
+    },
+    {
+      "pagePath": "pages/user/user",
+      "iconPath": "images/smile_unselect.png",
+      "selectedIconPath": "images/smile_selected.png",
+      "text": "我的"
+    }
+  ]
+},
+
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
