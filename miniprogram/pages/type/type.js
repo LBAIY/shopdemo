@@ -1,4 +1,4 @@
-// pages/type/type.js
+// miniprogram/pages/type.js
 Page({
 
   /**
@@ -14,6 +14,29 @@ Page({
   onLoad: function (options) {
 
   },
+  //查询种类
+  selectType: function () {
+    const db = wx.cloud.database()
+    // 查询当前用户所有的 counters
+    db.collection('snacks').where({
+      type: '糖果'
+    }).get({
+      success: res => {
+        this.setData({
+          queryResult: JSON.stringify(res.data, null, 2)
+        })
+        console.log('[数据库] [查询记录] 成功: ', res)
+      },
+      fail: err => {
+        wx.showToast({
+          icon: 'none',
+          title: '查询记录失败'
+        })
+        console.error('[数据库] [查询记录] 失败：', err)
+      }
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
