@@ -14,52 +14,26 @@ Page({
     foodList: [            // 分类
       {
         id: 0,
-        name: '蓝莓草莓'
+        name: '糖果巧克力'
       },
       {
         id: 1,
-        name: '柑橘橙柚'
+        name: '坚果蜜饯'
       },
       {
         id: 2,
-        name: '热带水果'
+        name: '饼干糕点'
       },
       {
         id: 3,
-        name: '苹果/梨'
+        name: '薯片膨化'
       },
       {
         id: 4,
-        name: '瓜类'
+        name: '肉干小食'
       }
     ],
-    classifyList: [[
-      {
-        name: '新鲜橙子',
-        price: 13,
-        introduce: '橙子起源于东南亚。橙树属小乔木。',
-        url:'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4056467868,1274190614&fm=26&gp=0.jpg'
-      },
-      {
-        name: '蓝莓',
-        price: 20,
-        introduce: '蓝莓本身营养丰富,食用之后有益于身体健康,是世界粮农组织推荐的五大健康水果之一。',
-        url: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2441061435,3917792559&fm=26&gp=0.jpg'
-      }
-    ], [
-        {
-          name: '新鲜橙子',
-          price: 13,
-          introduce: '橙子起源于东南亚。橙树属小乔木。',
-          url: 'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4056467868,1274190614&fm=26&gp=0.jpg'
-        },
-        {
-          name: '蓝莓',
-          price: 20,
-          introduce: '蓝莓本身营养丰富,食用之后有益于身体健康,是世界粮农组织推荐的五大健康水果之一。',
-          url: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2441061435,3917792559&fm=26&gp=0.jpg'
-        }
-      ]],   //所有商品信息
+    classifyList: [],   //所有商品信息
   },
 
 	/**
@@ -121,7 +95,7 @@ Page({
       });
     }
 
-    app.globalData.classifyList.fruits = this.data.classifyList;
+    app.globalData.classifyList = this.data.classifyList;
     console.log(app.globalData.carts);
     this.setData({
       cart: app.globalData.carts,
@@ -152,7 +126,7 @@ Page({
       cart: app.globalData.carts,
       cartTotal: app.globalData.cartTotal,
       cartTotalPrice: app.globalData.cartTotalPrice,
-      classifyList: app.globalData.classifyList.fruits,
+      classifyList: app.globalData.classifyList,
     });
 
   },
@@ -173,7 +147,7 @@ Page({
       cart: app.globalData.carts,
       cartTotal: app.globalData.cartTotal,
       cartTotalPrice: app.globalData.cartTotalPrice,
-      classifyList: app.globalData.classifyList.fruits,
+      classifyList: app.globalData.classifyList,
     });
   },
 

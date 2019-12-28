@@ -6,7 +6,8 @@
     "pages/search/search",
     "pages/all-stores/meat/meat",
     "pages/all-stores/fruits/fruits",
-    "pages/myCart/myCart"
+    "pages/myCart/myCart",
+    "pages/snacks/snacks"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -28,7 +29,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/commodity/commodity",
+        "pagePath": "pages/snacks/snacks",
         "iconPath": "images/list_unselect.png",
         "selectedIconPath": "images/list_select.png",
         "text": "分类"

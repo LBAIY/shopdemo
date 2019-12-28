@@ -16,56 +16,55 @@ App({
     }
 
     this.globalData = {
+      // 购物车数据
       cart: [],
       carts: [],
       cartTotal: 0,
       cartTotalPrice: 0,
-      classifyList: {
-        fruits: [[
-          {
-            id:0,
-            stock:1,
-            name: '新鲜橙子',
-            price: 13,
-            introduce: '橙子起源于东南亚。橙树属小乔木。',
-            url: 'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4056467868,1274190614&fm=26&gp=0.jpg',
-            selected: false,
-            num:0
-          },
-          {
-            id:1,
-            stock: 1,
-            name: '蓝莓',
-            price: 20,
-            introduce: '蓝莓本身营养丰富,食用之后有益于身体健康,是世界粮农组织推荐的五大健康水果之一。',
-            url: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2441061435,3917792559&fm=26&gp=0.jpg',
-            selected: false,
-            num: 0
-          }
-        ], [
-          {
-            id: 2,
-            stock: 1,
-            name: '新鲜橙子',
-            price: 13,
-            introduce: '橙子起源于东南亚。橙树属小乔木。',
-            url: 'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4056467868,1274190614&fm=26&gp=0.jpg',
-              selected: false,
-              num: 0
-          },
-          {
-            id: 3,
-            stock: 1,
-            name: '蓝莓',
-            price: 20,
-            introduce: '蓝莓本身营养丰富,食用之后有益于身体健康,是世界粮农组织推荐的五大健康水果之一。',
-            url: 'https://dss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2441061435,3917792559&fm=26&gp=0.jpg',
-            selected: false,
-            num: 0
-          }
-        ]]
-      }
+      // 商品数据
+      classifyList: [[
+        {
+          id: 0,
+          stock: 1, // 是否下架商品，1为上架，0为下架
+          name: '费列罗 巧克力',
+          price: 13,
+          introduce: '金色经典与珍视的人分享',
+          url: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2603383705,19145738&fm=26&gp=0.jpg',
+          selected: false,//是否选中
+          num: 0 // 数量
+        },
+        {
+          id: 1,
+          stock: 1,
+          name: 'kinder/健达',
+          price: 20,
+          introduce: '优选美味 味道纯正',
+          url: 'https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1927403880,3670572272&fm=26&gp=0.jpg',
+          selected: false,
+          num: 0
+        }
+      ], [
+        {
+          id: 2,
+          stock: 1,
+          name: '恰恰 每日坚果7日装',
+          price: 13,
+          introduce: '6种原料；6种果仁；6种味道',
+          url: 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1377619755,3452328444&fm=26&gp=0.jpg',
+          selected: false,
+          num: 0
+        },
+        {
+          id: 3,
+          stock: 1,
+          name: '沃隆 每日坚果',
+          price: 20,
+          introduce: '6种原料；6种果仁；6种味道',
+          url: 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1423547038,3775340237&fm=26&gp=0.jpg',
+          selected: false,
+          num: 0
+        }
+      ]]
     }
-
   }
 })
