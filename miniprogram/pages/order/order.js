@@ -77,9 +77,32 @@ Page({
     })
   },
   //新增订单数据同时添加订单-地址数据
-  addOrderAddress: function (newOrderId){
-    
-  },
+  // addOrderAddress: function (newOrderId,event){
+  //   var addressid=event.target.dataset.addressid;
+  //   var addressname=null;
+  //   var addresstelephone = null;
+  //   var addressprovince = null;
+  //   var addresscity = null;
+  //   var addressarea = null;
+  //   var addressdetail = null;
+  //   db.collection('address').where({
+  //     _id=addressid
+  //   }).then(res=>{
+  //     console.log(res),
+  //     this.setData({
+  //       addressname=name,
+  //       addresstelephone=telephone,
+  //       addressprovince=province,
+  //       addresscity=city,
+  //       addressarea=area,
+  //       addressdetail=detail,
+  //     })
+  //   }).catch.log(err=>{
+  //     console.log(err)
+  //   })
+
+  //   db.collection('')
+  // },
 
   //查看订单详情（三个方法同时进行）
   //查看订单详情(不包商品)
