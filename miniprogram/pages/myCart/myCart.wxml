@@ -19,6 +19,7 @@
                                 -
                             </view>
                             <view class="num">
+                            
                                 {{item.quantity}}
                             </view>
                             <view class="add" bindtap="addItems" data-id="{{item.id}}">
