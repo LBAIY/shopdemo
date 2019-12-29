@@ -15,14 +15,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-
     console.log("跳转至购物车")
     this.setData({
       cart: app.globalData.carts,
     })
-    console.log(this.data.cart)
-    console.log(app.globalData.carts)
   },
   // 点击减号
   reduceItems: function (e) {
