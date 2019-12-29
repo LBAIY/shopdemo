@@ -13,7 +13,7 @@ Page({
   data: {
     goodsList: [],  //商品展示的列表
     sum: 0,  //总的钱数
-    allStatus: "circle"  //商品是否全选的标志，很巧妙的是，这个标志可以定义小圆圈是钩还是空心圆
+    allStatus: "circle",  //商品是否全选的标志，很巧妙的是，这个标志可以定义小圆圈是钩还是空心圆
     order:[],
     order_id:null,
     order:{
