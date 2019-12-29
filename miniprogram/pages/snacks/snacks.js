@@ -1,5 +1,5 @@
 const app = getApp();
-import utils from '../../util/util.js'
+import { updateCart } from '../../util/util'
 Page({
 
 	/**
@@ -51,7 +51,7 @@ Page({
   ordinInCart: function (event) {
     console.log(event);
     let id = event.currentTarget.dataset.id;
-    utils.addToCart(id)
+    updateCart(id,1)
     // let stock = event.currentTarget.dataset.stock;
     // if (stock) {
     //   this.changes(id);

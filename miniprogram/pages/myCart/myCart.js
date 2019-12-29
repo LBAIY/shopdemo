@@ -1,5 +1,5 @@
 // pages/myCart/myCart.js
-import utils from '../../util/util.js'
+import { updateCart } from '../../util/util'
 const app = getApp();
 Page({
 
@@ -33,6 +33,7 @@ Page({
     if (cart[index].quantity==1){
       //删除一条记录
       cart.splice(index, 1)
+      this.sumTotalPrice()
       const db=wx.cloud.database()
       const _ = db.command   
       db.collection('cart')
@@ -47,7 +48,8 @@ Page({
         })
     }else{
       cart[index].quantity = cart[index].quantity-1;
-      utils.updateCart(snack_id, tag)
+      this.sumTotalPrice()
+      updateCart(snack_id, tag)
     }
     this.setData({
       cart:cart
@@ -62,11 +64,12 @@ Page({
     const cart = this.data.cart
     if (cart[index].quantity <cart[index].num) {
       cart[index].quantity = cart[index].quantity + 1;
+      this.sumTotalPrice()
     }
     this.setData({
       cart: cart
     })
-    utils.updateCart(snack_id, tag)
+    updateCart(snack_id, tag)
   },
   
   // 购物车添加事件
@@ -133,6 +136,26 @@ Page({
       }
     }
 
+    this.setData({
+      cartAllIn: this.data.cartAllIn,
+      cart: this.data.cart,
+      cartTotal: num,
+      cartTotalPrice: totalPrice,
+    });
+    app.globalData.carts = this.data.cart;
+  },
+
+  //计算总价
+  sumTotalPrice:function(){
+    let num = 0;
+    let totalPrice = 0;
+    let carts = this.data.cart;
+    for (let key of carts) {
+      if (key.selected) {
+        num += key.num;
+        totalPrice += key.quantity * key.price;
+      }
+    }
     this.setData({
       cartAllIn: this.data.cartAllIn,
       cart: this.data.cart,

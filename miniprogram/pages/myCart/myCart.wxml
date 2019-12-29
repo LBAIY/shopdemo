@@ -5,7 +5,7 @@
          <scroll-view scroll-y="true" style="height: 90vh;">
             <block wx:for="{{cart}}" wx:key = "index">
                 <view class="food">
-                    <view class="cart-allin" bindtap="cartAdd" data-cid="{{item._id}}" data-id="{{item.sanck_id}}">
+                    <view class="cart-allin" bindtap="cartAdd" data-ind="{{index}}" data-cid="{{item._id}}" data-id="{{item.sanck_id}}">
                         <icon type="{{item.selected ? 'success' : 'circle'}}" color="blue" size="30"></icon>
                     </view>
                     <image src="{{item.url}}" />

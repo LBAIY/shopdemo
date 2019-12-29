@@ -27,7 +27,7 @@
                     <text class="foodIntroduce">{{item.introduce}}</text>
                     <view class="special">特价</view>
                     <p>￥{{item.price}}</p>
-                    <view class="btn" bindtap="ordinInCart" data-id="{{item.id}}" data-stock="{{item.stock}}" >
+                    <view class="btn" bindtap="ordinInCart" data-id="{{item._id}}" data-stock="{{item.stock}}" >
                         <!-- <icon type="{{item.selected ? 'success' : 'circle'}}" color="#23a3ff" size="30"></icon> -->
                         <image class="icon" src="../../images/icon-gouwuche.png" />
                     </view>
