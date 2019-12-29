@@ -154,75 +154,78 @@ Page({
     // })
   },
   
-  // // 购物车添加事件
-  // cartAdd: function (e) {
-  //   console.log(e);
-  //   let carts = this.data.cart;
-  //   for (let key of carts) {
-  //     if (key.id === e.currentTarget.dataset.id) {
+  // 购物车添加事件
+  cartAdd: function (e) {
+    // console.log(e);
+    let carts = this.data.cart;
+    const ind = e.currentTarget.dataset.ind
+    const selected = e.currentTarget.dataset.selected
+    carts[ind].selected = !selected
+    // for (let key of carts) {
+    //   if (key.id === e.currentTarget.dataset.id) {
 
-  //       if (key.cartSelected) {
-  //         key.cartSelected = false;
-  //       } else {
-  //         key.cartSelected = true;
-  //       }
-  //       console.log(key.cartSelected);
-  //     }
-  //   }
+    //     if (key.cartSelected) {
+    //       key.cartSelected = false;
+    //     } else {
+    //       key.cartSelected = true;
+    //     }
+    //     console.log(key.cartSelected);
+    //   }
+    // }
 
-  //   let num = 0;
-  //   let totalPrice = 0;
-  //   for (let key of carts) {
-  //     if (key.cartSelected) {
-  //       num += key.num;
-  //       totalPrice += key.quantity * key.price;
-  //     }
-  //   }
-  //   console.log(totalPrice);
-  //   this.setData({
-  //     cart: carts,
-  //     cartTotal: num,
-  //     cartTotalPrice: totalPrice,
-  //   });
-  //   app.globalData.carts = carts;
+    let num = 0;
+    let totalPrice = 0;
+    for (let key of carts) {
+      if (key.selected) {
+        num += key.num;
+        totalPrice += key.quantity * key.price;
+      }
+    }
+    // console.log(totalPrice);
+    this.setData({
+      cart: carts,
+      cartTotal: num,
+      cartTotalPrice: totalPrice,
+    });
+    // app.globalData.carts = carts;
 
-  // },
+  },
 
-  // // 购物车全选操作
-  // cartAllIn: function () {
+  // 购物车全选操作
+  cartAllIn: function () {
 
-  //   for (let key of this.data.cart) {
-  //     if (this.data.cartAllIn) {
-  //       key.cartSelected = false;
-  //     } else {
-  //       key.cartSelected = true;
-  //     }
-  //   }
-  //   if (this.data.cartAllIn) {
-  //     this.data.cartAllIn = false;
-  //     app.globalData.cartAllIn = false;
-  //   } else {
-  //     this.data.cartAllIn = true;
-  //     app.globalData.cartAllIn = true;
-  //   }
-  //   let num = 0;
-  //   let totalPrice = 0;
-  //   let carts = this.data.cart;
-  //   for (let key of carts) {
-  //     if (key.cartSelected) {
-  //       num += key.num;
-  //       totalPrice += key.quantity * key.price;
-  //     }
-  //   }
+    for (let key of this.data.cart) {
+      if (this.data.cartAllIn) {
+        key.selected = false;
+      } else {
+        key.selected = true;
+      }
+    }
+    if (this.data.cartAllIn) {
+      this.data.cartAllIn = false;
+      // app.globalData.cartAllIn = false;
+    } else {
+      this.data.cartAllIn = true;
+      // app.globalData.cartAllIn = true;
+    }
+    let num = 0;
+    let totalPrice = 0;
+    let carts = this.data.cart;
+    for (let key of carts) {
+      if (key.selected) {
+        num += key.num;
+        totalPrice += key.quantity * key.price;
+      }
+    }
 
-  //   this.setData({
-  //     cartAllIn: this.data.cartAllIn,
-  //     cart: this.data.cart,
-  //     cartTotal: num,
-  //     cartTotalPrice: totalPrice,
-  //   });
-  //   app.globalData.carts = this.data.cart;
-  // },
+    this.setData({
+      cartAllIn: this.data.cartAllIn,
+      cart: this.data.cart,
+      cartTotal: num,
+      cartTotalPrice: totalPrice,
+    });
+    app.globalData.carts = this.data.cart;
+  },
 
   // 点击购物车操作
   finishedOrder: function () {
@@ -241,7 +244,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(1);
+    // console.log(1);
     this.setData({
       cart: app.globalData.carts,
     })
