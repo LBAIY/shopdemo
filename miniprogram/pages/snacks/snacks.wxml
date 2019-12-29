@@ -28,6 +28,7 @@
                     <view class="special">特价</view>
                     <p class="price">￥{{item.price}}</p>
                     <view class="btn" bindtap="ordinInCart" data-id="{{item.id}}" data-stock="{{item.stock}}" data-nid="{{item._id}}">
+
                         <!-- <icon type="{{item.selected ? 'success' : 'circle'}}" color="#23a3ff" size="30"></icon> -->
                         <image class="icon" src="../../images/icon-gouwuche.png" />
                     </view>

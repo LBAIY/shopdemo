@@ -1,7 +1,5 @@
 const app = getApp();
-import utils from '../../util/util.js'
 import { updateCart } from '../../util/util'
-
 Page({
 
 	/**
@@ -57,15 +55,6 @@ Page({
       icon: 'none',
       title: '成功加入购物车'
     })
-
-    // console.log(event);
-    // let id = event.currentTarget.dataset.id;
-    // utils.addToCart(id)
-    // let stock = event.currentTarget.dataset.stock;
-    // if (stock) {
-    //   this.changes(id);
-    // } else {
-    // }
   },
   //前往购物车
   gotoCart: function () {
