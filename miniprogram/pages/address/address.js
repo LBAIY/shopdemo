@@ -71,7 +71,7 @@ Page({
   },
 
   navigateTo(e){
-    if(this.data.type !== 2){
+    if(this.data.type == 2){
       const _id = e.currentTarget.dataset.id
       wx.redirectTo({
         url: `/pages/makeorder/makeorder?addressid=${_id}`
