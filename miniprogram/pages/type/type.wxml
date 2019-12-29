@@ -1,3 +1,27 @@
-<!--miniprogram/pages/type.wxml-->
-<text>miniprogram/pages/type.wxml</text>
-<button size="mini" type="default" bindtap="selectType">糖果</button>
+<!--miniprogram/pages/type.wxml  
+<text class="code" wx:if="{{queryResult}}">{{queryResult}}</text>
+<view wx:for="{{allType}}" wx:key="key">
+    <text class="txt">{{item._id}}</text>
+</view>
+-->
+<text>零食种类</text>
+<button bindtap="allType">零食种类列表</button>
+<view wx:for="{{allType}}"  wx:key="index">
+<button data-index="{{index}}" bindtap="selectByType" >{{item._id}}</button>
+</view>
+<!--<button  bindtap="selectByType" >按零食类别查询</button>-->
+<view wx:for="{{resByType}}" wx:key="key">
+    <text class="txt">{{item._id}}</text>
+    <text class="txt">{{item.name}}</text>
+    <image src="{{item.fileID}}"></image>
+</view>
+<button bindtap="orderByPrice">按价格排序</button>
+<view wx:for="{{resOrByPrice}}" wx:key="key">
+    <text class="txt">{{item._id}}</text>
+    <text class="txt">{{item.name}}</text>
+    {{item.amount}}
+</view>
+<button data-index="002" bindtap="addToCart">加入购物车</button>
+<button bindtap="selectCart">查询购物车</button>
+<button data-index="72527ac65e080703084750cb54875193" bindtap="removeCart">删除1条购物车记录</button>
+<button bindtap="removeAllCart">清空购物车记录</button>
