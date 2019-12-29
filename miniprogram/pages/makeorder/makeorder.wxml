@@ -10,7 +10,7 @@
         </view>
       </scroll-view>
       <!-- </view> -->
-         <scroll-view scroll-y="true" style="height: 90vh;">
+         <scroll-view scroll-y="true" style="height: 80vh;">
             <block wx:for="{{cart}}" wx:key = "index">
                 <view class="food">
                     <image src="{{item.url}}" />

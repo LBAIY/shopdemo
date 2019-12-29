@@ -1,4 +1,6 @@
 // miniprogram/pages/makeorder/makeorder.js
+import utils from '../../util/util.js'
+const app = getApp()
 Page({
 
   /**
@@ -15,12 +17,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      cart: app.globalData.carts
+    })
   },
   selectAddress: function() {
     wx.navigateTo({
       url: '../selectaddress/selectaddress',
     })
+  },
+  submitOrder:function() {
+    /* //新增订单详情
+      addressid: 地址的id
+      snacks: {
+        snack_id:商品的id,
+        quantity: 商品的数目,
+        。。。其他信息
+      }
+    */
+    let addressid = this.data.address._id
+    let snacks = this.data.cart
+    console.log('addressid', addressid)
+    console.log('snacks', snacks)
+    utils.addOrder(addressid, snacks)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
