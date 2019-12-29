@@ -25,7 +25,14 @@
     <view>{{address[0].city}}</view>
     <view>{{address[0].area}}</view>
     <view>{{address[0].detail}}</view>
+    <view wx:for="{{orderSnack}}">
+    <view><image src="{{item.url}}"></image></view>
+    <view>名称：{{item.name}}</view>
+    <view>介绍：{{item.introduce}}</view>
+    <view>价格：{{item.price}}</view>
+    <view>数量：{{item.quantity}}</view>
     </view>
-    <button bindtap="addOrder">添加订单（测试用）</button>
+    </view>
+    <!--<button bindtap="addOrder">添加订单（测试用）</button>-->
   </view>  
 
