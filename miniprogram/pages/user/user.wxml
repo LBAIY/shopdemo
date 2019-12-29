@@ -1,0 +1,14 @@
+<!--pages/user/user.wxml-->
+<text></text>
+
+<!-- 地址管理 -->
+    <view class="address-box">
+        <view class="address-manage">
+            <navigator url="/pages/address/address">地址管理</navigator>
+        </view>
+        <view wx:if="{{hasAddress}}" class="address-list">
+            <view>姓名：{{address.name}}</view>
+            <view>电话：{{address.telephone}}</view>
+            <view>宿舍楼：{{address.detail}}</view>
+        </view>
+    </view>

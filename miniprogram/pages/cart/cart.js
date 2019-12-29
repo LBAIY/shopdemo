@@ -154,6 +154,11 @@ Page({
     app.globalData.carts = carts
     this.getTotalPrice();
   },
+  
+  //购物车加减数量
+  updataCartNum:function(e){
+    
+  },
 
   /**
    * 绑定加数量事件

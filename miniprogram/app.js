@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: async function () {
     
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')
@@ -14,6 +14,7 @@ App({
         traceUser: true,
       })
     }
+    // 登录
 
     this.globalData = {
      // cloudRoot: "clo140d-voyz-cloud-86f82a/",
@@ -235,17 +236,19 @@ App({
     })
   },
 
-  // 获取云端文件tmpUrl
-  getTmpUrl: (imgFolder, imgName, currentData) => {
-    wx.cloud.getTempFileURL({
-      fileList: [getApp().globalData.cloudRoot + imgFolder + "/" + imgName],
-      success: res => {
-        // console.log(res.fileList["0"].tempFileURL)
-        getCurrentPages().setData({
-          currentData: res.fileList["0"].tempFileURL
-        })
-      },
-      fail: console.error
-    })
-  }
+
+  //获取用户openid
+    getOpenId: function () {
+      wx.cloud.callFunction({
+        name: 'login'
+      }).then(res => {
+        console.log(res);
+        this.setData({
+          openid: res.result._openid
+        });
+      }).catch(err => {
+        console.log(err);
+      })
+    }
+  
 })

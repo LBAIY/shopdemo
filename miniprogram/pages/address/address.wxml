@@ -1,0 +1,22 @@
+<!--miniprogram/pages/address/address.wxml-->
+<text></text>
+<button bindtap="addAddress">添加地址</button>
+<view class="list">
+<button bindtap="searchAddress">查看我的所有地址</button>
+    <block class="list-item" wx:for="{{address}}" wx:key="{{item._id}}"> 
+          <text class="title">{{item.name}}</text>
+          <text class="title">{{item.telephone}}</text>
+          <view class="sn">
+          {{item.province}}
+          {{item.city}}
+          {{item.area}}
+          {{item.detail}}
+          </view>
+          <view class="sn">
+          {{item.amount}}
+          </view>
+          <button bindtap="updateAddress" data-addressid="{{item._id}}">修改</button>
+          <button bindtap="deleteAddress" data-addressid="{{item._id}}">删除</button>
+    </block>
+  </view>  
+
