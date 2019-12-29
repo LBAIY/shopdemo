@@ -57,6 +57,17 @@ Page({
       })
     })
   },
+  //更新地址页面（先根据前端传入的地址id获取对应地址）
+  searchOneAddress:function(event){
+    var addressid = event.target.dataset.addressid
+    db.collection('addressid').where({
+      _id:addressid
+    }).get().then(res=>{
+      this.setData({
+        item:res.data
+      })
+    })
+  },
   //更新地址
   updataAddress:function(e){
     db.collection('address').doc('')

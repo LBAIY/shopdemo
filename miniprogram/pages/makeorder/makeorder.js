@@ -8,8 +8,164 @@ Page({
     address: { "_id": "dbff9fc75e070b2c080dd1e8706c4816", "detail": "广东工业大学", "_openid": "oUVpX44G3nG3d6w02phYExSnXLaE", "name": "常常", "telephone": "1378880000", "province": "广东省", "city": "广州市", "area": "天河区" },
     cart: [{ "_id": "b040a67a5e0864960867bf1749f88f71", "snack_id": "b419f243-cb7d-491f-a2e1-75c9b7bf1037", "stock": 1.0, "quantity": 3.0, "name": "费列罗 巧克力", "selected": false, "type": 0.0, "num": 0.0, "_openid": "oUVpX497zSKYGIILM-mxSd1jFhCI", "url": "https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2603383705,19145738\u0026fm=26\u0026gp=0.jpg", "introduce": "金色经典与珍视的人分享", "price": 13.0 },
 { "_id": "b040a67a5e087c780870916d4eba92b9", "_openid": "oUVpX45nNHbe9ELQRSKqlanjaiNE", "snack_id": "UfewxvlikkLcrf9eGG01tvGxAthDrtPKnokUEhZKlhZXZAVb", "selected": false, "type": 1.0, "stock": 1.0, "name": "恰恰 每日坚果7日装", "quantity": 2.0, "introduce": "6种原料；6种果仁；6种味道", "num": 0.0, "price": 23.0, "url": "https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1377619755,3452328444\u0026fm=26\u0026gp=0.jpg" },
-{ "_id": "dbff9fc75e08594308648fa827314bf6", "introduce": "优选美味 味道纯正", "url": "https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1927403880,3670572272\u0026fm=26\u0026gp=0.jpg", "num": 1.0, "_openid": "oUVpX45vwJDwot7Rk8jAfy-SqEwY", "cartSelected": true, "price": 23.0, "id": 1.0, "stock": 1.0, "name": "kinder/健达", "type": 0.0 }]
+{ "_id": "dbff9fc75e08594308648fa827314bf6", "introduce": "优选美味 味道纯正", "url": "https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1927403880,3670572272\u0026fm=26\u0026gp=0.jpg", "num": 1.0, "_openid": "oUVpX45vwJDwot7Rk8jAfy-SqEwY", "cartSelected": true, "price": 23.0, "id": 1.0, "stock": 1.0, "name": "kinder/健达", "type": 0.0 }],
+//初始
+order: [],
+    order_id: null,
+    order: {
+      order_id: null,
+      telephone: '',
+      address_id: '',
+      total: '',
+      time: ''
+    },
+    orderAddress: [],
+    orderSnack: []
   },
+
+  //新增订单
+  //新增订单详情
+  addOrder: function () {
+    var time = this.CurrentTime();
+    var it = this.RndNum(); //新建订单时需要同时调用三个方法
+    var newOrderId = it;
+    var addressid = 'dbff9fc75e070b2c080dd1e8706c4816'
+    db.collection('order_info').add({
+      data: {
+        _id: newOrderId,
+        address_id: addressid,
+        total: '23',
+        time: time
+      }
+    }).then(res => {
+      console.log(res)
+      // for(var i;i<ordersnack.length;i++){  //循环前端传入的商品数组（包括商品_id：值设为snack_id,商品数量quantity：值为quantity）
+      //   var snackId=ordersnack[i].snack_Id
+      //   var quantity=ordersnack[i].quantity
+      //   this.addOrderSnack(newOrderId,snackId,quantity)
+      // }
+      this.addOrderAddress(newOrderId, addressid)
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+  //新增订单数据同时添加订单-商品数据
+  addOrderSnack: function (newOrderId, snackId, quantity) {
+    db.collection('snack').doc(snackId).get()
+      .then(res => {
+        console.log(res),
+          db.collection('order_snacks').add({
+            data: {
+              order_id: newOrderId,
+              snacks_id: snackId,
+              url: res.data.url,
+              name: res.data.name,
+              price: res.data.price,
+              type: res.data.type,
+              introduce: res.data.introduce,
+              quantity: quantity
+            }
+          }).then(res2 => {
+            console.log(res2),
+              this.deleteOrderSnack(snackId)
+          }).catch(err => {
+            console.log(err)
+          })
+      });
+
+  },
+  //新增订单数据同时添加订单-地址数据
+  addOrderAddress: function (newOrderId, addressid) {
+    db.collection('address').doc(addressid).get()
+      .then(res => {
+        console.log(res),
+          db.collection('order_address').add({
+            data: {
+              order_id: newOrderId,
+              address_id: addressid,
+              name: res.data.name,
+              telephone: res.data.telephone,
+              province: res.data.province,
+              city: res.data.city,
+              area: res.data.area,
+              detail: res.data.detail,
+            }
+          }).then(res2 => {
+            console.log(res2)
+          }).catch(err => { console.log(err) })
+      }).catch(err => {
+        console.log(err)
+      });
+  },
+  //删除购物车中对应商品记录
+  deleteOrderSnack: function (snackId) {
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      db.collection('cart').where({
+        _openid: res.result.openid,
+        snacks_id: snackid
+      }).remove().then(res2 => {
+        console.log(res2)
+      }).catch(err => {
+        console.log(err)
+      })
+    })
+  },
+
+  // 随机数生成函数
+  RndNum: function () {
+    return Math.random().toString(32).substr(2, 15);
+  },
+
+  // 获取时间戳
+  CurrentTime: function () {
+    var now = new Date();
+    var year = now.getFullYear();       //年
+    var month = now.getMonth() + 1;     //月
+    var day = now.getDate();            //日
+    var hh = now.getHours();            //时
+    var mm = now.getMinutes();          //分
+    var ss = now.getSeconds();           //秒
+
+    var clock = year.toString();
+    if (month < 10) clock += "0";
+    clock += month;
+    if (day < 10) clock += "0";
+    clock += day;
+    if (hh < 10) clock += "0";
+    clock += hh;
+    if (mm < 10) clock += '0';
+    clock += mm;
+    if (ss < 10) clock += '0';
+    clock += ss;
+    return (clock);
+  },
+
+  CurrentTime_show: function () {
+    var now = new Date();
+    var year = now.getFullYear();       //年
+    var month = now.getMonth() + 1;     //月
+    var day = now.getDate();            //日
+    var hh = now.getHours();            //时
+    var mm = now.getMinutes();          //分
+    var ss = now.getSeconds();           //秒
+
+    var clock = year.toString() + "-";
+    if (month < 10) clock += "0";
+    clock += month + "-";
+    if (day < 10) clock += "0";
+    clock += day + " ";
+    if (hh < 10) clock += "0";
+    clock += hh + ":";
+    if (mm < 10) clock += '0';
+    clock += mm + ":";
+    if (ss < 10) clock += '0';
+    clock += ss;
+
+    return (clock);
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -19,9 +175,11 @@ Page({
   },
   selectAddress: function() {
     wx.navigateTo({
-      url: '../selectaddress/selectaddress',
+      url: '../address/address?type=2',
     })
   },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
