@@ -2,21 +2,6 @@
   "pages": [
     "pages/type/type",
     "pages/index/index",
-<<<<<<< HEAD
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid",
-    "pages/im/im",
-    "pages/im/room/room",
-    "pages/cloud/cloud"
-=======
     "pages/user/user",
     "pages/commodity/commodity",
     "pages/search/search",
@@ -24,7 +9,6 @@
     "pages/snacks/snacks",
     "pages/order/order",
     "pages/address/address"
->>>>>>> d974f52cc3dd4328cb7268d5089da88ef40aded2
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
