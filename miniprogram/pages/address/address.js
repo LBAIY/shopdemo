@@ -85,12 +85,11 @@ Page({
     var addressid=event.target.dataset.addressid
     console.log('id', event.target.dataset.addressid)
     db.collection('address')
-      .where({
-        _id: addressid
-      })
+      .doc(addressid)
       .remove()
       .then(res => {
         console.log(res);
+        this.searchAddress();
       })
       .catch(err => {
         console.log(err);

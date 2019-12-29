@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/type/type",
+    
     "pages/index/index",
+    "pages/type/type",
     "pages/user/user",
     "pages/commodity/commodity",
     "pages/search/search",
