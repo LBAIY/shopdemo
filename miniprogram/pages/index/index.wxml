@@ -13,15 +13,25 @@
       </swiper-item>
   </swiper>
 
-<view class="list">
-<!-- <button bindtap="getSnackList">获取商品列表</button> -->
-    <view class="list-item" wx:for="{{snacklist}}" wx:key="_id">       
-          <image src="{{item.url}}" ></image> 
-          <text class="title">{{item.name}}</text>
-          <view class="sn">
-          {{item.price}}
-          </view>
+  <scroll-view class="scroll_view" scroll-x>
+    <view class="scroll_item" wx:for="{{tabList}}" wx:key="{{index}}" data-index="{{index}}" bind:tap="navigateToUrl">
+      {{item}}
+    </view>
+  </scroll-view>
 
+  <view class="list">
+  <!-- <button bindtap="getSnackList">获取商品列表</button> -->
+    <view class="list-item" wx:for="{{snacklist}}" wx:key="_id">       
+      <image class="img" src="{{item.url}}" ></image> 
+      <text class="title">{{item.name}}</text>
+      <view class="footer">
+        <view class="sn">￥{{item.price}}</view>
+        <view class="add" data-ind="{{index}}" data-id="{{item._id}}" data-selected="{{item.selected}}" bind:tap="handleSelect">
+          <!-- <icon type="{{item.selected ? 'success' : 'circle'}}" color="coral" size="20"></icon> -->
+          <image class="icon" src="../../images/icon-gouwuche.png" />
+        </view>
+      </view>
+      
     </view>
   </view>  
 

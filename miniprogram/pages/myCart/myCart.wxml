@@ -19,7 +19,7 @@
                                 -
                             </view>
                             <view class="num">
-                                {{item.num}}
+                                {{item.quantity}}
                             </view>
                             <view class="add" bindtap="addItems" data-id="{{item.id}}">
                                 +
@@ -29,7 +29,7 @@
                 </view>
                 <view class="subtotal">
                     小计:
-                    <text>￥{{item.price*item.num}}</text>
+                    <text>￥{{item.price*item.quantity}}</text>
                 </view>
             </block>
                 </scroll-view>
