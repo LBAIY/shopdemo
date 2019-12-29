@@ -47,8 +47,9 @@ Page({
       name:'login'
     }).then(res=>{
       db.collection('address').where({
-        _openid: res.result._openid
-      }).get().then(res2 => {
+        _openid: res.result.openid
+      })
+      .get().then(res2 => {
         console.log(res2);
         this.setData({
           address: res2.data

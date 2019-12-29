@@ -45,93 +45,90 @@ Page({
     var time=this.CurrentTime();
     var it = this.RndNum(); //新建订单时需要同时调用三个方法
     var newOrderId = it;
+    var addressid = 'dbff9fc75e070b2c080dd1e8706c4816'
     db.collection('order_info').add({
       data: {
-        _id:this.newOrderId,
-        telephone:'',
-        address_id:'',
-        total:'',
+        _id:newOrderId,
+        telephone:'13788880000',
+        address_id:addressid,
+        total:'23',
         time:time
       }
     }).then(res => {
         console.log(res)
-      this.addOrderSnack(newOrderId,snackId),
-      this.addOrderAddress(newOrderId)
+      //this.addOrderSnack(newOrderId,snackId),
+      this.addOrderAddress(newOrderId,addressid)
       }).catch(err => {
         console.log(err)
       })
   },
   //新增订单数据同时添加订单-商品数据
   addOrderSnack: function (newOrderId,snackId,quantity){   
-    var ordername=null;
-    var orderintroduce=null;
-    var orderprice=null;
-    var ordertype=null;
-    var orderurl='';
+    // var ordername=null;
+    // var orderintroduce=null;
+    // var orderprice=null;
+    // var ordertype=null;
+    // var orderurl='';
     db.collection('snack').doc(snackId).get()
     .then(res=>{
       console.log(res),
-      this.setData({
-        ordername:name,
-        orderintroduce:introduce,
-        orderprice:price,
-        ordertype:type,
-        orderurl:url
+      
+      db.collection('order_snacks').add({
+        data: {
+          order_id: newOrderId,
+          snacks_id: snackId,
+          url: res.data.url,
+          name: res.data.name,
+          price: res.data.price,
+          type: res.data.type,
+          introduce:res.data.introduce,
+          quantity: quantity
+        }
+      }).then(res2 => {
+        console.log(res2),
+          this.deleteOrderSnack(snackId)
+      }).catch(err => {
+        console.log(err)
       })
     });
-    db.collection('order_snacks').add({
-      data:{
-        order_id:newOrderId,
-        snacks_id:snackId,
-        url:orderurl,
-        name:ordername,
-        price:orderprice,
-        type:ordertype,
-        quantity:quantity
-      }
-    }).then(res2 => {
-      console.log(res2),
-      this.deleteOrderSnack(snackId)
-    }).catch(err => {
-      console.log(err)
-    })
+    
   },
   //新增订单数据同时添加订单-地址数据
-  addOrderAddress: function (newOrderId,event){
-    var addressid=event.target.dataset.addressid;
-    var addressname=null;
-    var addresstelephone = null;
-    var addressprovince = null;
-    var addresscity = null;
-    var addressarea = null;
-    var addressdetail = null;
+  addOrderAddress: function (newOrderId,addressid){
+   /* var addressname='';
+    var addresstelephone = '';
+    var addressprovince = '';
+    var addresscity = '';
+    var addressarea = '';
+    var addressdetail = '';*/
     db.collection('address').doc(addressid).get()
     .then(res=>{
       console.log(res),
-      this.setData({
-        addressname:name,
-        addresstelephone:telephone,
-        addressprovince:province,
-        addresscity:city,
-        addressarea:area,
-        addressdetail:detail,
-      })
-    }).catch.log(err=>{
+     /* this.setData({
+        addressname:res.data.name,
+        addresstelephone: res.data.telephone,
+        addressprovince: res.data.province,
+        addresscity: res.data.city,
+        addressarea: res.data.area,
+        addressdetail: res.data.detail,
+      })*/
+        db.collection('order_address').add({
+          data: {
+            order_id: newOrderId,
+            address_id: addressid,
+            name: res.data.name,
+            telephone: res.data.telephone,
+            province: res.data.province,
+            city: res.data.city,
+            area: res.data.area,
+            detail: res.data.detail,
+          }
+        }).then(res2 => {
+          console.log(res2)
+        }).catch(err => { console.log(err) })
+    }).catch(err=>{
       console.log(err)
-    });
-    db.collection('order_address').add({
-      data:{
-        order_id:newOrderId,
-        name:addressname,
-        telephone:addresstelephone,
-        province:addressprovince,
-        city:addresscity,
-        area:addressarea,
-        detail:addressdetail,
-      }
-    }).then(res2=>{
-      console.log(res)
-    }).catch(err=>{console.log(err)})
+    });  
   },
   //删除购物车中对应商品记录
   deleteOrderSnack: function (snackId){
@@ -157,9 +154,9 @@ Page({
     .get().then(res=>{
       console.log(res);
       this.setData({       
-        //不会获取数据
+        item:res.data
       })
-      this.orderDetailSnack(orderid);//同时获取订单-商品
+     // this.orderDetailSnack(orderid);//同时获取订单-商品
       this.orderDetailAddress(orderid);//同时获取订单-地址
     }).catch(err=>{
       console.log(err)
@@ -187,7 +184,7 @@ Page({
     }).get().then(res => {
       console.log(res),
         this.setData({
-          orderAddress: res.data
+          address: res.data
         })
     }).catch(err => {
       console.log(err)
