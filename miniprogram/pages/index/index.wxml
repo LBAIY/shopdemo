@@ -14,17 +14,14 @@
   </swiper>
 
 <view class="list">
-<button bindtap="getSnackList">获取商品列表</button>
-    <view class="list-item" wx:for="{{snacklist}}" wx:key="{{item._id}}">       
-          <image src="{{snacklist.fileID}}" ></image> 
+<!-- <button bindtap="getSnackList">获取商品列表</button> -->
+    <view class="list-item" wx:for="{{snacklist}}" wx:key="_id">       
+          <image src="{{item.url}}" ></image> 
           <text class="title">{{item.name}}</text>
           <view class="sn">
           {{item.price}}
-          {{item.type}}
           </view>
-          <view class="sn">
-          {{item.amount}}
-          </view>
+
     </view>
   </view>  
 
