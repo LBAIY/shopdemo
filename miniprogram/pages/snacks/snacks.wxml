@@ -28,7 +28,8 @@
                     <view class="special">特价</view>
                     <p>￥{{item.price}}</p>
                     <view class="btn" bindtap="ordinInCart" data-id="{{item.id}}" data-stock="{{item.stock}}" >
-                            <icon type="{{item.selected ? 'success' : 'circle'}}" color="#23a3ff" size="30"></icon>
+                    加入
+                            <!-- <icon type="{{item.selected ? 'success' : 'circle'}}" color="#23a3ff" size="30"></icon> -->
                     </view>
                 </view>
                 

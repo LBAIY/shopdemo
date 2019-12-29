@@ -1,4 +1,5 @@
 const app = getApp();
+import utils from '../../util/util.js'
 Page({
 
 	/**
@@ -50,11 +51,12 @@ Page({
   ordinInCart: function (event) {
     console.log(event);
     let id = event.currentTarget.dataset.id;
-    let stock = event.currentTarget.dataset.stock;
-    if (stock) {
-      this.changes(id);
-    } else {
-    }
+    utils.addToCart(id)
+    // let stock = event.currentTarget.dataset.stock;
+    // if (stock) {
+    //   this.changes(id);
+    // } else {
+    // }
   },
   //前往购物车
   gotoCart: function () {
@@ -63,54 +65,51 @@ Page({
     })
   },
   //改变按钮，购物车操作
-  changes: function (id) {
-    var carts = app.globalData.carts;
+  // changes: function (id) {
+  //   var carts = app.globalData.carts;
 
 
-    for (let key of this.data.classifyList) {
-      key.forEach((item) => {
-        if (item.id == id && item.stock) {
-          if (!item.selected) {
-            console.log("addsuccess");
-            carts.push(item);
-            app.globalData.cartTotal++;
-            app.globalData.cartTotalPrice += item.price;
-            item.selected = true;
-            console.log(this.data);
-          } else if (item.selected) {
-            console.log(this.data);
-            console.log(this.data.cart);
-            app.globalData.carts = carts.filter((cartItem) => {   //filter返回新数组，所以不能用carts接受，
-              //不然app.globalData.carts不能改变
-              console.log(cartItem.id);
-              return cartItem.id != id;
-            });
-            console.log("deletesuccess");
-            console.log(carts);
-            app.globalData.cartTotal--;
-            app.globalData.cartTotalPrice -= item.price;
-            item.selected = false;
-          }
-        }
-      });
-    }
+  //   for (let key of this.data.classifyList) {
+  //     key.forEach((item) => {
+  //       if (item.id == id && item.stock) {
+  //         if (!item.selected) {
+  //           console.log("addsuccess");
+  //           carts.push(item);
+  //           app.globalData.cartTotal++;
+  //           app.globalData.cartTotalPrice += item.price;
+  //           item.selected = true;
+  //           console.log(this.data);
+  //         } else if (item.selected) {
+  //           console.log(this.data);
+  //           console.log(this.data.cart);
+  //           app.globalData.carts = carts.filter((cartItem) => {   //filter返回新数组，所以不能用carts接受，
+  //             //不然app.globalData.carts不能改变
+  //             console.log(cartItem.id);
+  //             return cartItem.id != id;
+  //           });
+  //           console.log("deletesuccess");
+  //           console.log(carts);
+  //           app.globalData.cartTotal--;
+  //           app.globalData.cartTotalPrice -= item.price;
+  //           item.selected = false;
+  //         }
+  //       }
+  //     });
+  //   }
 
-    app.globalData.classifyList = this.data.classifyList;
-    console.log(app.globalData.carts);
-    this.setData({
-      cart: app.globalData.carts,
-      cartTotal: app.globalData.cartTotal,
-      cartTotalPrice: app.globalData.cartTotalPrice,
-      classifyList: this.data.classifyList,
-    });
-    //将信息加入全局的购物车中
-    console.log(app.globalData.carts);
-  },
+  //   app.globalData.classifyList = this.data.classifyList;
+  //   console.log(app.globalData.carts);
+  //   this.setData({
+  //     cart: app.globalData.carts,
+  //     cartTotal: app.globalData.cartTotal,
+  //     cartTotalPrice: app.globalData.cartTotalPrice,
+  //     classifyList: this.data.classifyList,
+  //   });
+  //   //将信息加入全局的购物车中
+  //   console.log(app.globalData.carts);
+  // },
 
   onLoad: function (options) {
-
-
-
     console.log(options);
     wx.getSystemInfo({
       success: (res) => {
