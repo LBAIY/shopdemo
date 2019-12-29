@@ -30,7 +30,7 @@ export default {
                   },
                   success: function (res) {
                     console.log('购物车数量-1')
-                    
+                    //app.selectCart();
                   },
                   fail: function (res) {
                     console.log('购物车数量-1失败')
