@@ -4,8 +4,6 @@
     "pages/user/user",
     "pages/commodity/commodity",
     "pages/search/search",
-    "pages/all-stores/meat/meat",
-    "pages/all-stores/fruits/fruits",
     "pages/myCart/myCart",
     "pages/snacks/snacks"
   ],
