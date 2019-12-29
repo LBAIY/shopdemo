@@ -1,0 +1,53 @@
+<!--miniprogram/pages/makeorder/makeorder.wxml-->
+<view class="container">
+  <view class="content">
+    <view bindtap="goToAddress" class="address-box">
+      <!-- <scroll-view scroll-y="true" style="height: 90vh;"> -->
+        <view>地址:</view>
+        <view>{{address.name}}</view>
+        <view>{{address.city}}{{address.area}}{{address.detail}}</view>
+      <!-- </scroll-view> -->
+      </view>
+         <scroll-view scroll-y="true" style="height: 90vh;">
+            <block wx:for="{{cart}}" wx:key = "index">
+                <view class="food">
+                    <image src="{{item.url}}" />
+                    <view class="mes">
+                        <text class="foodName">{{item.name}}</text>
+                        <text class="foodIntroduce">{{item.introduce}}</text>
+                        <view class="special">特价</view>
+                        <p>￥{{item.price}}</p>
+            <view class="number">
+                        <!-- <view class="reduce" bindtap="reduceItems" data-id="{{item.id}}">
+                            -
+                        </view> -->
+                        <view class="num">
+
+                          数量： {{item.quantity}}
+                        </view>
+                        <!-- <view class="add" bindtap="addItems" data-id="{{item.id}}">
+                            +
+                        </view> -->
+                        </view>
+                    </view>
+                </view>
+                <!-- <view class="subtotal">
+                    小计:
+                    <text>￥{{item.price*item.quantity}}</text>
+                </view> -->
+            </block>
+                </scroll-view>
+        </view>
+  <view class="cart">
+        <view class="cart-allin" bindtap="cartAllIn">
+            <!-- <icon type="{{cartAllIn ? 'success' : 'circle'}}" color="blue" size="30"></icon>
+
+            <text class="total">全选</text> -->
+        </view>
+
+        <view class="totalall">合计：
+            <text>￥{{cartTotalPrice}}</text>
+        </view>
+        <view class="cart-btn" bindtap="submitOrder">提交订单</view>
+    </view>
+</view>

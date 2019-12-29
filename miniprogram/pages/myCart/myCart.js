@@ -270,7 +270,7 @@ Page({
     //   duration: 2000,
     // });
     wx.navigateTo({
-      url: '/pages/order/order',
+      url: '/pages/makeorder/makeorder',
     })
   },
   /**

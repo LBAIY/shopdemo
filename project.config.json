@@ -59,8 +59,28 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/type/type",
-					"pathName": "pages/type/type",
+					"name": "商品",
+					"pathName": "pages/commodity/commodity",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "水果",
+					"pathName": "pages/all-stores/fruits/fruits",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "订单",
+					"pathName": "pages/order/order",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "pages/makeorder/makeorder",
+					"pathName": "pages/makeorder/makeorder",
 					"scene": null
 				}
 			]

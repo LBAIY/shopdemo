@@ -13,12 +13,6 @@
       </swiper-item>
   </swiper>
 
-  <scroll-view class="scroll_view" scroll-x>
-    <view class="scroll_item" wx:for="{{tabList}}" wx:key="{{index}}" data-index="{{index}}" bind:tap="navigateToUrl">
-      {{item}}
-    </view>
-  </scroll-view>
-
   <view class="list">
   <!-- <button bindtap="getSnackList">获取商品列表</button> -->
     <view class="list-item" wx:for="{{snacklist}}" wx:key="_id">       
