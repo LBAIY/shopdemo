@@ -92,7 +92,7 @@
     width: 60rpx;
     height: 30rpx;
     border: 2rpx solid  rgb(255, 60, 0);
-    top: 120rpx;
+    top: 110rpx;
     left: 0;
     color: rgb(255, 60, 0);
     font-size: 25rpx;  
@@ -139,4 +139,8 @@
 .icon{
     width: 45rpx;
     height: 45rpx;
+}
+
+.price{
+    /* margin-top: 10rpx; */
 }
