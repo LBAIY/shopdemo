@@ -6,10 +6,8 @@
             <!-- <scroll-view scroll-y="true" style=
             "height:1000rpx"> -->
         <block wx:for="{{foodList}}" wx:key = "index">
-            
             <text class="navFood {{currentTab==item.id?'active':''}}"
              bindtap="changeNav" data-currentab="{{item.id}}">{{item.name}}</text>
-            
             </block>
             <view class="bottom">
                 
