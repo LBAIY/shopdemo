@@ -75,7 +75,7 @@ Page({
 
   //按价格排序（升序）
   orderByPrice:function(){
-    db.collection('snacks')
+    db.collection('snack')
       .where({
         type:"干果"
       })

@@ -1,18 +1,51 @@
-// miniprogram/pages/order/order.js
+// pages/order/order.js
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    goodsList: [],  //商品展示的列表
+    sum: 0,  //总的钱数
+    allStatus: "circle"  //商品是否全选的标志，很巧妙的是，这个标志可以定义小圆圈是钩还是空心圆
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
+    const cardList = app.globalData.carts;
+    cardList.map(item => {
+      item.cartSelected = true
+    })
+    this.setData({
+      //页面加载时就给购物车显示商品数量
+      goodsList: cardList
+    })
+  },
+  toSort: function () {
+    wx.switchTab({
+      url: "../myCart/myCart",
+    })
+  },
+  //计算所有商品的钱数
+  sumMoney: function () {
+    var count = 0;
+    const goods = this.data.goodsList;
+    for (let i = 0; i < goods.length; i++) {
+      count += goods[i].num * goods[i].price
+    }
+    this.setData({
+      sum: count
+    })
+  },
+  toOrder: function () {
+    wx.navigateTo({
+      url: "../order/order",
+    })
   },
 
   /**
@@ -26,7 +59,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    // this.setData({
+    //   // 页面加载时就给购物车显示商品数量
+    //   goodsList: app.globalData.carts
+    // })
+    this.sumMoney()
   },
 
   /**

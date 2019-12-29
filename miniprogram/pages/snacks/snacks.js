@@ -8,7 +8,7 @@ Page({
     //scrollview 高度
     windowHeight: 0,    //高度
     currentTab: 0,	 	//导航栏指向
-    cart: [],			//购物车
+    carts: [],			//购物车
     cartTotal: 0,		//购物车件数
     cartTotalPrice: 0,   //购物车价格总计
     foodList: [            // 分类
