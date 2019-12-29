@@ -13,7 +13,8 @@
     "pages/makeorder/makeorder",
     "pages/selectaddress/selectaddress",
     "pages/addAddress/addAddress",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/about/about"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -55,5 +56,10 @@
     ]
   },
   "sitemapLocation": "sitemap.json",
-  "style": "v2"
+  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
 }
