@@ -1,5 +1,6 @@
 //index.js
 //获取应用实例
+import { updateCart } from '../../util/util'
 const app = getApp()
 const db = wx.cloud.database()
 
@@ -64,16 +65,17 @@ Page({
   },
 
   handleSelect(e){
-    const ind = e.currentTarget.dataset.ind
-    const selected = e.currentTarget.dataset.selected
-    const snacklist = this.data.snacklist
-    snacklist[ind].selected = !selected
-    this.setData({
-      snacklist
-    })
+    // const ind = e.currentTarget.dataset.ind
+    // const selected = e.currentTarget.dataset.selected
+    // const snacklist = this.data.snacklist
+    // snacklist[ind].selected = !selected
+    // this.setData({
+    //   snacklist
+    // })
  
     const _id = e.currentTarget.dataset.id
-    this.addToCart(_id)
+    // this.addToCart(_id)
+    updateCart(_id, 1)
   },
 
   addToCart:function(id){

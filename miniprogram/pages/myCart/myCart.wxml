@@ -5,8 +5,8 @@
          <scroll-view scroll-y="true" style="height: 90vh;">
             <block wx:for="{{cart}}" wx:key = "index">
                 <view class="food">
-                    <view class="cart-allin" bindtap="cartAdd" data-id="{{item.id}}">
-                        <icon type="{{item.cartSelected ? 'success' : 'circle'}}" color="blue" size="30"></icon>
+                    <view class="cart-allin" bindtap="cartAdd" data-id="{{item.id}}" data-ind="{{index}}" data-selected="{{item.selected}}">
+                        <icon type="{{item.selected ? 'success' : 'circle'}}" color="blue" size="30"></icon>
                     </view>
                     <image src="{{item.url}}" />
                     <view class="mes">
@@ -28,18 +28,17 @@
                         </view>
                     </view>
                 </view>
-                <view class="subtotal">
+                <!-- <view class="subtotal">
                     小计:
                     <text>￥{{item.price*item.quantity}}</text>
-                </view>
+                </view> -->
             </block>
                 </scroll-view>
         </view>
         <!-- 购物车信息 -->
     <view class="cart">
-        <view class="cart-allin" bindtap="cartAllIn">
-            <icon type="{{cartAllIn ? 'success' : 'circle'}}" color="blue" size="30"></icon>
-
+        <view class="cart-allin allin" bindtap="cartAllIn">
+            <view ><icon type="{{cartAllIn ? 'success' : 'circle'}}" color="blue" size="30"></icon></view>
             <text class="total">全选</text>
         </view>
 

@@ -1,3 +1,6 @@
-<!--miniprogram/pages/userinfo/userinfo.wxml-->
-<text>miniprogram/pages/userinfo/userinfo.wxml</text>
-<button bindtap="updateUserInfo">修改个人资料</button>
+<!--miniprogram/pages/addAddress.wxml-->
+<view class="address">
+  <view class="item">昵称<input value="{{user.name}}" data-key="name" bind:input="handleInput" /></view>
+  <view class="item">年龄<input value="{{user.age}}" data-key="age" bind:input="handleInput" /></view>
+  <button class="button" bindtap="updateUserInfo" >{{buttonText}}</button>
+</view>
