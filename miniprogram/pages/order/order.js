@@ -77,7 +77,7 @@ Page({
     })
   },
   //新增订单数据同时添加订单-地址数据
-  // addOrderAddress: function (newOrderId,event){
+  addOrderAddress: function (newOrderId,event){
   //   var addressid=event.target.dataset.addressid;
   //   var addressname=null;
   //   var addresstelephone = null;
@@ -102,7 +102,7 @@ Page({
   //   })
 
   //   db.collection('')
-  // },
+  },
 
   //查看订单详情（三个方法同时进行）
   //查看订单详情(不包商品)
