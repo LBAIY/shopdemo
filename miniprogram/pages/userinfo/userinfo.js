@@ -6,7 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userinfo:[]
+    userinfo:[],
+    user: {
+      name: '',
+      age:''
+    },
+    buttonText: '新增'
   },
   //判断用户是否存在（不存在则调用新建方法）
   searchUser:function(){
@@ -14,7 +19,7 @@ Page({
       name: 'login'
     }).then(res => {
       db.collection('user').where({
-        _openid: res.result._openid
+        _openid: res.result.openid
       }).get().then(res2 => {
         console.log(res2);
         this.setData({
@@ -46,7 +51,7 @@ Page({
       name: 'login'
     }).then(res => {
       db.collection('user').where({
-        _openid: res.result._openid
+        _openid: res.result.openid
       }).get().then(res2 => {
         console.log(res2);
         this.setData({
@@ -73,12 +78,93 @@ Page({
       })
   },
 
+  fetch() {
+    const _this = this
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+    db.collection('user').where({
+      _openid:res.result.openid
+      // _id: 'e8f863ba5e0896c4087b4c1c471698cd',
+      // _openid: openid
+    }).get({
+      success(res) {
+        console.log(res)
+        _this.setData({
+          user: res.data[0]
+        })
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
+    })
+  },
+
+  updateUserInfo: function () {
+      const { name, age } = this.data.user
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      db.collection('user').where({
+        _openid:res.result.openid})
+        .update({  // 修改
+        data: {
+          name:name,
+          age:age
+        },
+        success: function (res) {
+          console.log('更新成功', res)
+         /* wx.showToast({
+            icon: 'none',
+            title: '更新成功'
+          })
+          setTimeout(() => {
+            wx.navigateBack({
+              delta: 1, // 回退前 delta(默认为1) 页面
+            })
+          }, 300)*/
+        },
+        fail: function (res) {
+          console.log('更新失败', res)
+         /* wx.showToast({
+            icon: 'none',
+            title: '更新失败'
+          })*/
+        }
+      })
+    })
+  },
+
+  handleInput(e) {
+    const key = e.currentTarget.dataset.key
+    const user = {
+      ...this.data.user,
+    }
+    user[key] = e.detail.value
+    this.setData({
+      user
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    options.type == 1 && this.fetch()  // 0新增，1修改
+
+    this.setData({
+      type: options.type,
+      //addressid: options.addressid,
+      buttonText: options.type == 0 ? '新增' : '修改'
+    })
+    // wx.navigateTo({
+    //   url: '/pages/addAddress/addAddress'
+    // })
 
   },
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

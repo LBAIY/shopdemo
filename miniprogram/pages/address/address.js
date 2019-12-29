@@ -71,7 +71,7 @@ Page({
   },
 
   navigateTo(e){
-    if(this.data.type !== 2){
+    if(this.data.type == 2){
       const _id = e.currentTarget.dataset.id
       wx.redirectTo({
         url: `/pages/makeorder/makeorder?addressid=${_id}`
@@ -84,7 +84,9 @@ Page({
    */
   onLoad: function (options) {
     //应该在页面加载完成后自动获取openid
-    options.type && this.setData({type})
+    options.type && this.setData({
+      type: options.type
+    })
   },
   
   /**
