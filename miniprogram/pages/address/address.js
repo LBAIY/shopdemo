@@ -58,7 +58,7 @@ Page({
   },
   //更新地址
   updataAddress:function(e){
-    db.collection('user').doc('')
+    db.collection('address').doc('')
     .update({
       data: {
         name: '',
@@ -66,7 +66,7 @@ Page({
         province: '',
         city: '',
         area: '',
-        detail: ''   
+        detail: ''
       }
     }).then(res => {
       console.log(res);
@@ -82,17 +82,14 @@ Page({
 */
   //删除某一地址
   deleteAddress:function(event){  
-    wx.navigateTo({
-      url: `../address/address?addressid=${event.target.dataset.addressid}`
-    })
+    var addressid=event.target.dataset.addressid
     console.log('id', event.target.dataset.addressid)
     db.collection('address')
-      .where({
-        _id: addressid
-      })
+      .doc(addressid)
       .remove()
       .then(res => {
         console.log(res);
+        this.searchAddress();
       })
       .catch(err => {
         console.log(err);

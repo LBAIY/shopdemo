@@ -57,7 +57,7 @@ Page({
     this.setData({
       snacklist
     })
-    
+ 
     const _id = e.currentTarget.dataset.id
     this.addToCart(_id)
   },

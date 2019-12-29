@@ -35,4 +35,7 @@
             <view>电话：{{address.telephone}}</view>
             <view>宿舍楼：{{address.detail}}</view>
         </view>
+        <view class="address-manage">
+            <navigator url="/pages/order/order">我的订单</navigator>
+        </view>
     </view>

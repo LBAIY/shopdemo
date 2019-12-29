@@ -8,6 +8,7 @@
     "pages/snacks/snacks",
     "pages/order/order",
     "pages/address/address",
+    "pages/userinfo/userinfo",
     "pages/type/type"
   ],
   "window": {
