@@ -22,7 +22,7 @@
 }
 
 .search .input {
-  width: 690rpx;
+  width: 650rpx;
   height: 56rpx;
   background: #ededed;
   border-radius: 8rpx;
@@ -132,4 +132,10 @@
 }
 .scroll_text{
   color: darkslategray;
+}
+
+.saoma{
+  width: 50rpx;
+  height: 50rpx;
+  padding: 0 10rpx;
 }

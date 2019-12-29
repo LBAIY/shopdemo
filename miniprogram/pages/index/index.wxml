@@ -1,6 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="search">
+    <image class="saoma" src="../../images/saoma.png" bind:tap="handleScanner" />
     <navigator url="/pages/search/search" class="input">
       <image class="icon"></image>
       <text class="txt">商品</text>
@@ -15,13 +16,13 @@
 
   <scroll-view class="scroll_view" scroll-x>
     <view class="tab">
-      <view class="scroll_item" wx:for="{{tabList}}" wx:key="{{index}}" data-index="{{index}}" bind:tap="navigateToUrl">
+      <view class="scroll_item" wx:for="{{tabList}}" wx:key="index" data-index="{{index}}" bind:tap="navigateToUrl">
         <image class="scroll_img" src="{{item.imgUrl}}" />
         <view class="scroll_text">{{item.title}}</view>
       </view>
     </view>
     <view class="tab">
-      <view class="scroll_item" wx:for="{{tabList1}}" wx:key="{{index}}" data-index="{{index}}" bind:tap="navigateToUrl">
+      <view class="scroll_item" wx:for="{{tabList1}}" wx:key="index" data-index="{{index}}" bind:tap="navigateToUrl">
         <image class="scroll_img" src="{{item.imgUrl}}" />
         <view class="scroll_text">{{item.title}}</view>
       </view>

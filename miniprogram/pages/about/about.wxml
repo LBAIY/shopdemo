@@ -1,0 +1,14 @@
+<!--miniprogram/pages/about/about.wxml-->
+<view class="">
+  <map id="map" longitude="113.394520" latitude="23.126009" scale="14" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 300px;"></map>
+  <view class="address">
+    地址：广东省广州市车陂江夏大街南六巷2号店菜鸟驿站对面
+  </view>
+  <button class="btn" bindtap="getLocation">
+    我的位置
+  </button>
+  <functional-page-navigator name="loginAndGetUserInfo" bind:success="loginSuccess">
+    <button class="btn">到这去</button>
+  </functional-page-navigator>
+</view>
+
