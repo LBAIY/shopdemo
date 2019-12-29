@@ -1,5 +1,7 @@
 const app = getApp();
 import utils from '../../util/util.js'
+import { updateCart } from '../../util/util'
+
 Page({
 
 	/**
@@ -49,9 +51,16 @@ Page({
   },
   //添加商品操作
   ordinInCart: function (event) {
-    console.log(event);
-    let id = event.currentTarget.dataset.id;
-    utils.addToCart(id)
+    let _id = event.currentTarget.dataset.nid;
+    updateCart(_id, 1)
+    wx.showToast({
+      icon: 'none',
+      title: '成功加入购物车'
+    })
+
+    // console.log(event);
+    // let id = event.currentTarget.dataset.id;
+    // utils.addToCart(id)
     // let stock = event.currentTarget.dataset.stock;
     // if (stock) {
     //   this.changes(id);

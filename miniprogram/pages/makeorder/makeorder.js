@@ -18,8 +18,10 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      cart: app.globalData.carts
+      cart: app.globalData.carts,
+      // cartTotalPrice: app.globalData.cartTotalPrice
     })
+    this.totalMoney()
   },
   selectAddress: function() {
     wx.navigateTo({
@@ -40,6 +42,18 @@ Page({
     console.log('addressid', addressid)
     console.log('snacks', snacks)
     utils.addOrder(addressid, snacks)
+  },
+
+  totalMoney() {
+    const cart = app.globalData.carts
+    let total = 0
+    for(let item of cart) {
+      console.log(item)
+      total += item.quantity*item.price
+    }
+    this.setData({
+      cartTotalPrice: total
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

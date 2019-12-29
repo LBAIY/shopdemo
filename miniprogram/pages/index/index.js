@@ -76,6 +76,10 @@ Page({
     const _id = e.currentTarget.dataset.id
     // this.addToCart(_id)
     updateCart(_id, 1)
+    wx.showToast({
+      icon: 'none',
+      title: '成功加入购物车'
+    })
   },
 
   addToCart:function(id){

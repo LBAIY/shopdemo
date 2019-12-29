@@ -157,7 +157,7 @@
     align-items: center;
 }
 .allin{
-    padding-left: 30rpx;
+    padding-left: 20rpx;
     
 }
 .total{
