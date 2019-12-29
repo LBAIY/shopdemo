@@ -102,6 +102,19 @@ Page({
       }
     })
     
-  }
+  },
+
+  onShow: function () {
+    var _this = this;
+    const db = wx.cloud.database()
+    db.collection('snacks').get({
+      success: res => {
+        conclose.log(res);
+        this.setData({
+          snacklist: res.data
+        })
+      }
+    })
+  },
   
 })

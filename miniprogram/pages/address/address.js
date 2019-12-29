@@ -66,7 +66,7 @@ Page({
         province: '',
         city: '',
         area: '',
-        detail: ''   
+        detail: ''
       }
     }).then(res => {
       console.log(res);
@@ -82,9 +82,7 @@ Page({
 */
   //删除某一地址
   deleteAddress:function(event){  
-    wx.navigateTo({
-      url: `../address/address?addressid=${event.target.dataset.addressid}`
-    })
+    var addressid=event.target.dataset.addressid
     console.log('id', event.target.dataset.addressid)
     db.collection('address')
       .where({

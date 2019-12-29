@@ -1,2 +1,12 @@
-<!--miniprogram/pages/order/order.wxml-->
-<text>miniprogram/pages/order/order.wxml</text>
+<view class="list">
+<button bindtap="searchOrder">查看我的所有订单</button>
+    <block class="list-item" wx:for="{{order}}" wx:key="{{item._id}}"> 
+          <text class="title">{{item.telephone}}</text>
+          <view class="sn">
+          {{item._id}}
+          {{item.time}}
+          {{item.total}}
+          </view>
+          <button bindtap="orderDetail" data-orderid="{{item._id}}">查看订单详情</button>
+    </block>
+  </view>  
