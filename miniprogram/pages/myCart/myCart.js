@@ -112,12 +112,16 @@ Page({
     })
   },
 
-  // 点击减号
+  // 点击减号--这里加减号可以都调用这个函数，传过来一个tag值即可
   reduceItems: function (e) {
     const index = e.currentTarget.dataset.index;
-    const snack_id ='b419f243-cb7d-491f-a2e1-75c9b7bf1037'
-    const tag=0
+    const snack_id ='b419f243-cb7d-491f-a2e1-75c9b7bf1037'//这两个值要从前端获取
+    const tag=0// 0表示-, 1表示+
     this.updateCart(snack_id, tag)
+    //然后就是要更新页面上加减后的数量,也是获取index可以做的
+    wx.navigateTo({
+      url: '../myCart/myCart',
+    })
     // this.data.cart[index].quantity = this.data.cart[index].quantity-1;
     // this.setData({
     //   cart:this.data.cart
@@ -158,7 +162,7 @@ Page({
       cart: app.globalData.carts,
       cartTotal: num,
       cartTotalPrice: totalPrice,
-<<<<<<< HEAD
+
     })
     // 调用数据库减少
     const db = wx.cloud.database()
@@ -201,10 +205,7 @@ Page({
         console.log(err);
       }
     })
-      
-=======
     })*/
->>>>>>> yeqin
 
   },
   // 点击加号
