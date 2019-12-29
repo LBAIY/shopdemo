@@ -1,1 +1,34 @@
 /* miniprogram/pages/address/address.wxss */
+
+.add{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.10);
+  padding: 20rpx 0;
+  background: #fff;
+}
+
+.list{
+  margin-top: 30rpx;
+}
+.list-item{
+  border-bottom: 1px solid rgba(0,0,0,0.10);
+  background: #fff;
+  padding: 30rpx 30rpx 10rpx;
+}
+
+.name{
+
+}
+.phone{
+  margin-left: 20rpx;
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+}
+.button{
+  color: cadetblue;
+  width: 48%;
+}

@@ -73,7 +73,6 @@
 				},
 				{
 					"id": -1,
-<<<<<<< HEAD
 					"name": "个人中心",
 					"pathName": "pages/user/user",
 					"query": "",
@@ -83,10 +82,28 @@
 					"id": -1,
 					"name": "生成订单",
 					"pathName": "pages/makeorder/makeorder",
-=======
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
 					"name": "我的订单",
 					"pathName": "pages/order/order",
->>>>>>> linyun
+					"query": "type=0",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "新增地址",
+					"pathName": "pages/addAddress/addAddress",
+					"query": "type=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "修改地址",
+					"pathName": "pages/addAddress/addAddress",
+					"query": "type=1&addressid=e8f863ba5e0896c4087b4c1c471698cd",
 					"scene": null
 				}
 			]

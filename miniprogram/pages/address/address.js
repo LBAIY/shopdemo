@@ -11,36 +11,14 @@ Page({
     address:[],
     //addressid:null
   },
-  //获取用户openid
-  getOpenId: function () {
-    wx.cloud.callFunction({
-      name: 'login'
-    }).then(res => {
-      console.log(res);
-      this.setData({
-        openid: res.result._openid
-      });     
-    }).catch(err => {
-      console.log(err);
-    })
-  },
+
   //添加新地址
   addAddress:function(){
-    db.collection('address').add({
-      data: {
-        name: '菲菲',
-        telephone:'1378880000',
-        province:'广东省',
-        city:'广州市',
-        area:'海珠区',
-        detail:'xx大厦'       
-      }
-    }).then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
+    wx.navigateTo({
+      url: `/pages/addAddress/addAddress?type=0`
     })
   },
+
   //查看该用户所有地址
   searchAddress: function () {
     wx.cloud.callFunction({
@@ -69,29 +47,13 @@ Page({
     })
   },
   //更新地址
-  updataAddress:function(e){
-    db.collection('address').doc('')
-    .update({
-      data: {
-        name: '',
-        telephone: '',
-        province: '',
-        city: '',
-        area: '',
-        detail: ''
-      }
-    }).then(res => {
-      console.log(res);
-    }).catch(err => {
-      console.log(err);
-    })
-  },
-  /*getAddressId(event){
+  updateAddress:function(e){
+    const id = e.currentTarget.dataset.addressid
     wx.navigateTo({
-      url: '../address/address?addressid=${event.target.dataset.addressid}',
+      url: `/pages/addAddress/addAddress?type=1&addressid=${id}`
     })
   },
-*/
+
   //删除某一地址
   deleteAddress:function(event){  
     var addressid=event.target.dataset.addressid
@@ -108,59 +70,29 @@ Page({
       })
   },
 
+  navigateTo(e){
+    if(this.data.type !== 2){
+      const _id = e.currentTarget.dataset.id
+      wx.redirectTo({
+        url: `/pages/makeorder/makeorder?addressid=${_id}`
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     //应该在页面加载完成后自动获取openid
+    options.type && this.setData({type})
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
+  
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.searchAddress()
+    
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
