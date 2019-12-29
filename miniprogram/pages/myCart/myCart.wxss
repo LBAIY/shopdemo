@@ -35,7 +35,8 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 20rpx;
+    /* margin-top: 20rpx; */
+    padding: 20rpx;
     border-bottom: 1rpx solid #f7f7f7;
 }
 .content .food image{
@@ -76,14 +77,14 @@
 }
 .content .food .mes p{
     position: absolute;
-    top: 150rpx;
+    top: 160rpx;
     left: 0;
     color: rgb(255, 94, 0);
     font-size: 30rpx;  
 }
 .content .food .mes .number{
     position: absolute;
-    right: 10rpx;
+    right: 50rpx;
     bottom: 20rpx;
     width: 200rpx;
     height: 50rpx;
@@ -147,4 +148,18 @@
     line-height: 10vh;
     color: white;
     background-color: #23a3ff;
+}
+
+
+.cart-allin{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.allin{
+    padding-left: 30rpx;
+    
+}
+.total{
+    margin-left: 10rpx;
 }

@@ -105,6 +105,13 @@
 					"pathName": "pages/addAddress/addAddress",
 					"query": "type=1&addressid=e8f863ba5e0896c4087b4c1c471698cd",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "购物车",
+					"pathName": "pages/myCart/myCart",
+					"query": "",
+					"scene": null
 				}
 			]
 		}
