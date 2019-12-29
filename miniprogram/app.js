@@ -27,12 +27,9 @@ App({
         })
         .orderBy('price', 'desc')
         .get().then((res) => {
-          console.log(res.data)
-        return res.data
+          return res.data
       })
-      
       snacksList.push(item)
-      console.log(snacksList)
     }
     
     this.globalData = {
