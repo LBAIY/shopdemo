@@ -56,7 +56,11 @@ Page({
       }
     }).then(res => {
         console.log(res)
-      //this.addOrderSnack(newOrderId,snackId),
+        // for(var i;i<ordersnack.length;i++){  //循环前端传入的商品数组（包括商品_id：值设为snack_id,商品数量quantity：值为quantity）
+        //   var snackId=ordersnack[i].snack_Id
+        //   var quantity=ordersnack[i].quantity
+        //   this.addOrderSnack(newOrderId,snackId,quantity)
+        // }
       this.addOrderAddress(newOrderId,addressid)
       }).catch(err => {
         console.log(err)
@@ -64,15 +68,9 @@ Page({
   },
   //新增订单数据同时添加订单-商品数据
   addOrderSnack: function (newOrderId,snackId,quantity){   
-    // var ordername=null;
-    // var orderintroduce=null;
-    // var orderprice=null;
-    // var ordertype=null;
-    // var orderurl='';
     db.collection('snack').doc(snackId).get()
     .then(res=>{
-      console.log(res),
-      
+      console.log(res),     
       db.collection('order_snacks').add({
         data: {
           order_id: newOrderId,
@@ -95,23 +93,9 @@ Page({
   },
   //新增订单数据同时添加订单-地址数据
   addOrderAddress: function (newOrderId,addressid){
-   /* var addressname='';
-    var addresstelephone = '';
-    var addressprovince = '';
-    var addresscity = '';
-    var addressarea = '';
-    var addressdetail = '';*/
     db.collection('address').doc(addressid).get()
     .then(res=>{
       console.log(res),
-     /* this.setData({
-        addressname:res.data.name,
-        addresstelephone: res.data.telephone,
-        addressprovince: res.data.province,
-        addresscity: res.data.city,
-        addressarea: res.data.area,
-        addressdetail: res.data.detail,
-      })*/
         db.collection('order_address').add({
           data: {
             order_id: newOrderId,
@@ -136,7 +120,7 @@ Page({
       name: 'login'
     }).then(res=>{
       db.collection('cart').where({
-        _openid:res.result._openid,
+        _openid:res.result.openid,
         snacks_id:snackid
       }).remove().then(res2=>{
         console.log(res2)
