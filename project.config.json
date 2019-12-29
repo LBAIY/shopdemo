@@ -72,14 +72,15 @@
 					"scene": null
 				},
 				{
-					"id": 3,
-					"name": "订单",
-					"pathName": "pages/order/order",
+					"id": -1,
+					"name": "个人中心",
+					"pathName": "pages/user/user",
+					"query": "",
 					"scene": null
 				},
 				{
-					"id": 4,
-					"name": "pages/makeorder/makeorder",
+					"id": -1,
+					"name": "生成订单",
 					"pathName": "pages/makeorder/makeorder",
 					"scene": null
 				}

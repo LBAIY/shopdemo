@@ -9,13 +9,11 @@
 
 }
 .address-box {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  background: white;
-  width: 80%;
-  height:100rpx;
-  /* padding: 30rpx; */
+  padding: 20rpx;
+}
+.address-font{
+  color: rgb(185, 161, 161);
+    font-size: 35rpx; 
 }
 .content{
     width: 100%;

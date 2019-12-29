@@ -1,13 +1,15 @@
 <!--miniprogram/pages/makeorder/makeorder.wxml-->
 <view class="container">
   <view class="content">
-    <view bindtap="goToAddress" class="address-box">
-      <!-- <scroll-view scroll-y="true" style="height: 90vh;"> -->
-        <view>地址:</view>
-        <view>{{address.name}}</view>
-        <view>{{address.city}}{{address.area}}{{address.detail}}</view>
-      <!-- </scroll-view> -->
-      </view>
+    <!-- <view bindtap="goToAddress" class="address-box"> -->
+      <scroll-view scroll-y="true" style="height: 10vh;">
+        <view class="address-box" bindtap="selectAddress">
+          <view >送货地址:</view>
+          <view class="address-font">{{address.city}}{{address.area}}{{address.detail}}</view>
+
+        </view>
+      </scroll-view>
+      <!-- </view> -->
          <scroll-view scroll-y="true" style="height: 90vh;">
             <block wx:for="{{cart}}" wx:key = "index">
                 <view class="food">
