@@ -84,7 +84,9 @@ Page({
    */
   onLoad: function (options) {
     //应该在页面加载完成后自动获取openid
-    options.type && this.setData({type})
+    options.type && this.setData({
+      type: options.type
+    })
   },
   
   /**

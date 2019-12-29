@@ -30,7 +30,7 @@ Page({
       name: 'login'
     }).then(res => {
       db.collection('order_info').where({
-        _openid: res.result._openid
+        _openid: res.result.openid
       }).get().then(res2 => {
         console.log(res2);
         this.setData({
