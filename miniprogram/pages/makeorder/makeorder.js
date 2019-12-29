@@ -29,16 +29,15 @@ order: [],
 
   //新增订单
   //新增订单详情
-  addOrder: function (addressid,snacks) {
+  addOrder: function (addressid,snacks,total) {
     var time = this.CurrentTime();
     var it = this.RndNum(); //新建订单时需要同时调用三个方法
     var newOrderId = it;
-   // var addressid = 'dbff9fc75e070b2c080dd1e8706c4816'
     db.collection('order_info').add({
       data: {
         _id: newOrderId,
         address_id: addressid,
-        total: '23',
+        total: total,
         time: time
       }
     }).then(res => {
@@ -121,7 +120,7 @@ order: [],
     //var addressid=event.target.dataset.addressid
     db.collection('address').doc(this.data.addressid)
     .get().then(res=>{
-      console.log(res),
+      console.log('选择地址',res),
       this.setData({
         orderAddress:res.data
       })
@@ -190,10 +189,11 @@ order: [],
   onLoad: function (options) {
     this.setData({
       cart: app.globalData.carts,
+      addressid: options.addressid
       // cartTotalPrice: app.globalData.cartTotalPrice
     })
     this.totalMoney()
-    addressid:options.addressid
+    
     //console.log(options.addressid)
   },
   selectAddress: function() {
@@ -201,7 +201,7 @@ order: [],
       url: '../address/address?type=2',
     })
   },
-
+  //提交订单
   submitOrder:function() {
     /* //新增订单详情
       addressid: 地址的id
@@ -213,9 +213,11 @@ order: [],
     */
     let addressid = this.data.address._id
     let snacks = this.data.cart
+    let total=this.data.cartTotalPrice
     console.log('addressid', addressid)
     console.log('snacks', snacks)
-    this.addOrder(addressid, snacks)
+    console.log('total', total)
+    this.addOrder(addressid, snacks,total)
   },
 
   totalMoney() {
