@@ -182,10 +182,7 @@ order: [],
       url: '../address/address?type=2',
     })
   },
-<<<<<<< HEAD
 
-
-=======
   submitOrder:function() {
     /* //新增订单详情
       addressid: 地址的id
@@ -201,7 +198,7 @@ order: [],
     console.log('snacks', snacks)
     utils.addOrder(addressid, snacks)
   },
->>>>>>> 524d45ef334dffdf4184f93ba9ec3709fca36a35
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
