@@ -7,7 +7,11 @@ page{
   min-height: 100%;
   background-color: #f4f4f4;
 }
-
+.add{
+  color: coral;
+  display: flex;
+  align-items: center;
+}
 .search-header{
     position: fixed;
     top: 0;
@@ -20,7 +24,11 @@ page{
     font-size: 29rpx;
     color: #333;
 }
-
+.icon{
+  width: 45rpx;
+  height: 45rpx;
+  margin: 0 auto;
+}
 .search-header .input-box{
     position: relative;
     margin-top: 16rpx;
