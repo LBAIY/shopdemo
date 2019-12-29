@@ -140,7 +140,7 @@ Page({
       this.setData({       
         item:res.data
       })
-     // this.orderDetailSnack(orderid);//同时获取订单-商品
+      this.orderDetailSnack(orderid);//同时获取订单-商品
       this.orderDetailAddress(orderid);//同时获取订单-地址
     }).catch(err=>{
       console.log(err)

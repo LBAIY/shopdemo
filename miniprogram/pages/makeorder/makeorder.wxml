@@ -5,8 +5,11 @@
       <scroll-view scroll-y="true" style="height: 10vh;">
         <view class="address-box" bindtap="selectAddress">
           <view >送货地址:</view>
-          <view class="address-font">{{address.city}}{{address.area}}{{address.detail}}</view>
-
+          <view class="address-font" bindtap="searchOneAddress" >
+          {{orderAddress.city}}
+          {{orderAddress.area}}
+          {{orderAddress.detail}}
+          </view>
         </view>
       </scroll-view>
       <!-- </view> -->
