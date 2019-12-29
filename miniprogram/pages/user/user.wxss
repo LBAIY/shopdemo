@@ -6,7 +6,7 @@
 }
 .header{
   height: 250rpx;
-  background: #FFF9F7;
+  background: #f7b01d;
   /* padding-top: 150rpx; */
   padding-left: 40rpx;
   display: flex;
@@ -20,8 +20,8 @@
   overflow: hidden;
 }
 .header_name{
-  margin-left: 20rpx;
-  font-size: 36rpx;
+  margin-left: 30rpx;
+  font-size: 46rpx;
   color: #6D5F4F;
 }
 .header_phone{
@@ -30,7 +30,7 @@
 
 .list{
   background: #fff;
-  margin-bottom: 20rpx;
+  margin: 20rpx 0;
 }
 .item{
   display: flex;
@@ -80,4 +80,25 @@
 }
 .radio {
     margin-top: 20px;
+}
+
+.pay{
+  display: flex;
+  background: #fff;
+  padding: 20rpx 0;
+}
+.pay_item{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.pay_img{
+  width: 70rpx;
+  height: 70rpx;
+}
+.pay_title{
+  font-size: 28rpx;
+  color: rgb(138, 132, 132);
 }
