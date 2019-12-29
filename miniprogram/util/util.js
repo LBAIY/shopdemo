@@ -18,7 +18,7 @@ export default {
         if (res.data && res.data.length > 0) {
           //查询到数据，判断是+还是-
           if (tag == 0){    //进行-运算
-            if(res.data[0].quantity < res.data[0].num){    
+            if (res.data[0].quantity>1){    
               var id = res.data[0]._id
               db.collection('cart').doc(id)
                 .update({
@@ -28,28 +28,35 @@ export default {
                   },
                   success: function (res) {
                     console.log('购物车数量-1')
+                    
                   },
                   fail: function (res) {
                     console.log('购物车数量-1失败')
                   }
                 })
+            }else{       
+              console.log('购物车数量-1失败，已经是最小数量---前端反馈')
             }
           }else{            //进行+运算
-          var id = res.data[0]._id
-          db.collection('cart').doc(id)
-            .update({
-              data: {
-                // 表示指示数据库将字段自增 1
-                quantity: _.inc(1)
-                //自减1为：_.inc(-1)
-              },
-              success: function (res) {
-                console.log('购物车数量+1')
-              },
-              fail: function (res) {
-                console.log('购物车数量+1失败')
-              }
-            })
+            if (res.data[0].quantity < res.data[0].num){
+              var id = res.data[0]._id
+              db.collection('cart').doc(id)
+                .update({
+                  data: {
+                    // 表示指示数据库将字段自增 1
+                    quantity: _.inc(1)
+                    //自减1为：_.inc(-1)
+                  },
+                  success: function (res) {
+                    console.log('购物车数量+1')
+                  },
+                  fail: function (res) {
+                    console.log('购物车数量+1失败')
+                  }
+                })
+            }else{
+              console.log('已经达到上限，无法增加数量---前端反馈')
+            }
           }
         }
         //否则插入记录到购物车表:通过查询snack_id零食的信息res合并数量插入购物车记录
@@ -77,6 +84,7 @@ export default {
             })
           })
         }
+        app.selectCart(); //更新全局变量carts
       },
       fail(err) {
         console.log(err);

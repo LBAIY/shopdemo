@@ -1,5 +1,7 @@
 // pages/myCart/myCart.js
 const app = getApp();
+
+//import { updateCart } from '../../util/util.js'
 Page({
 
   /**
@@ -14,18 +16,113 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
-
     console.log("跳转至购物车")
     this.setData({
       cart: app.globalData.carts,
     })
-    console.log(this.data.cart)
-    console.log(app.globalData.carts)
+    // console.log(this.data.cart)
+    // console.log(app.globalData.carts)
   },
+
+  updateCart: function (snack_id, tag) {
+    const app = getApp()
+    const db = wx.cloud.database()
+    const _ = db.command
+    var openid = app.globalData.openId
+    db.collection('cart').where({
+      snack_id: snack_id,
+      _openid: openid
+    }).get({
+      success(res) {
+        //是否查询到数据
+        if (res.data && res.data.length > 0) {
+          //查询到数据，判断是+还是-
+          if (tag == 0) {    //进行-运算
+            if (res.data[0].quantity > 1) {
+              var id = res.data[0]._id
+              db.collection('cart').doc(id)
+                .update({
+                  data: {
+                    // 表示指示数据库将字段自增 1
+                    quantity: _.inc(-1)
+                  },
+                  success: function (res) {
+                    console.log('购物车数量-1')
+
+                  },
+                  fail: function (res) {
+                    console.log('购物车数量-1失败')
+                  }
+                })
+            } else {
+              console.log('购物车数量-1失败，已经是最小数量---前端反馈')
+            }
+          } else {            //进行+运算
+            if (res.data[0].quantity < res.data[0].num) {
+              var id = res.data[0]._id
+              db.collection('cart').doc(id)
+                .update({
+                  data: {
+                    // 表示指示数据库将字段自增 1
+                    quantity: _.inc(1)
+                    //自减1为：_.inc(-1)
+                  },
+                  success: function (res) {
+                    console.log('购物车数量+1')
+                  },
+                  fail: function (res) {
+                    console.log('购物车数量+1失败')
+                  }
+                })
+            } else {
+              console.log('已经达到上限，无法增加数量---前端反馈')
+            }
+          }
+        }
+        //否则插入记录到购物车表:通过查询snack_id零食的信息res合并数量插入购物车记录
+        else {
+          db.collection('snack').where({
+            _id: snack_id
+          }).get().then(res => {
+            db.collection('cart').add({
+              data: {
+                snack_id: res.data[0]._id,
+                introduce: res.data[0].introduce,
+                name: res.data[0].name,
+                num: res.data[0].num, //商品数量
+                price: res.data[0].price,
+                selected: res.data[0].selected,
+                stock: res.data[0].stock,
+                type: res.data[0].type,
+                url: res.data[0].url,
+                quantity: 1 //加入购物车的数量
+              }
+            }).then(res => {
+              console.log('成功加入购物车', res);
+            }).catch(err => {
+              console.log(err);
+            })
+          })
+        }
+        app.selectCart(); //更新全局变量carts
+      },
+      fail(err) {
+        console.log(err);
+      }
+    })
+  },
+
   // 点击减号
   reduceItems: function (e) {
-    let carts = app.globalData.carts;
+    const index = e.currentTarget.dataset.index;
+    const snack_id ='b419f243-cb7d-491f-a2e1-75c9b7bf1037'
+    const tag=0
+    this.updateCart(snack_id, tag)
+    // this.data.cart[index].quantity = this.data.cart[index].quantity-1;
+    // this.setData({
+    //   cart:this.data.cart
+    // })
+    /*let carts = app.globalData.carts;
     let classifyList = app.globalData.classifyList;
     let i = 0;
     for (let key of carts) {
@@ -84,7 +181,7 @@ Page({
       cart: app.globalData.carts,
       cartTotal: num,
       cartTotalPrice: totalPrice,
-    })
+    })*/
 
   },
   // 点击加号
@@ -203,11 +300,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(1);
-    this.setData({
-      cart: app.globalData.carts,
+    this.selectCart({
+      success:function(){
+        console.log('show',this.data.cart)
+      }
     })
   },
+
+  //查询购物车
+  selectCart: function (options) {
+    const db = wx.cloud.database()
+    db.collection('cart').where({
+      _openid: app.globalData.openId
+      }).get()
+      .then(res => {
+        app.globalData.carts = res.data
+        this.setData({
+          cart: res.data
+        })
+        //console.log('初始化购物车', res)
+      })
+      .catch(err => console.error(err))
+  },
+
+
 
   /**
    * 生命周期函数--监听页面隐藏

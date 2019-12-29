@@ -92,26 +92,6 @@ App({
     }).catch(err => console.error(err))
   },
 
-  selectCart: function (options) {
-    const db = wx.cloud.database()
-    wx.cloud.callFunction({
-      name: 'login',
-      success: res => {
-        db.collection('cart').where({
-          _openid: res.result.openid
-        }).get()
-          .then(res => {
-          this.globalData.carts = res.data
-          console.log('初始化购物车', res)
-          })
-          .catch(err => console.error(err))
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-  },
-
 
   //获取用户openid
     getOpenId: function () {
