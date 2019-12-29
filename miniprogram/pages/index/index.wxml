@@ -8,9 +8,25 @@
   </view>
   <swiper class="banner" indicator-dots="true"
     autoplay="true" interval="2000" duration="500">
-      <swiper-item wx:for="{{banner}}" wx:key="{{item.id}}">
+      <swiper-item wx:for="{{banner}}" wx:key="*this">
         <image src="{{item.url}}" background-size="cover"></image>
       </swiper-item>
   </swiper>
+
+<view class="list">
+<button bindtap="getSnackList">获取商品列表</button>
+    <view class="list-item" wx:for="{{snacklist}}" wx:key="{{item._id}}">       
+          <image src="{{snacklist.fileID}}" ></image> 
+          <text class="title">{{item.name}}</text>
+          <view class="sn">
+          {{item.price}}
+          {{item.type}}
+          </view>
+          <view class="sn">
+          {{item.amount}}
+          </view>
+    </view>
+  </view>  
+
 
 </view>

@@ -14,7 +14,7 @@ Page({
       { id: '6', title: '离线下载', link: '' },
       { id: '8', title: '检查版本', link: '' },
     ],
-
+    hasAddress: false,
   },
 
   switchChange(e){
