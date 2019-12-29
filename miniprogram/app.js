@@ -14,7 +14,6 @@ App({
         traceUser: true,
       })
     }
-    // 登录
 
     this.globalData = {
      // cloudRoot: "clo140d-voyz-cloud-86f82a/",
@@ -34,9 +33,32 @@ App({
       address_Arr: [
         "宿舍楼", "学院", "图书馆", "餐厅", "教学楼", "其他"
       ],
-    }
+    },
+    
+    this.selectCart() //初始化购物车
+    this.getOpenId()
   },
-
+  
+  //查询购物车
+  selectCart: function (options) {
+    const db = wx.cloud.database()
+    wx.cloud.callFunction({
+      name: 'login',
+      success: res => {
+        db.collection('cart').where({
+          _openid: res.result.openid
+        }).get()
+          .then(res => {
+            this.globalData.carts = res.data
+            //console.log('初始化购物车', res)
+          })
+          .catch(err => console.error(err))
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+      }
+    })
+  },
   // --------------常用----------------
 
   // 判断购物车中是否有重复后添加购物车
@@ -242,13 +264,9 @@ App({
       wx.cloud.callFunction({
         name: 'login'
       }).then(res => {
-        console.log(res);
-        this.setData({
-          openid: res.result._openid
-        });
-      }).catch(err => {
-        console.log(err);
-      })
-    }
-  
+        //console.log('res.openID', res.result.openid);
+        this.globalData.openId=res.result.openid
+        }).catch(err => console.error(err))
+  }
 })
+
