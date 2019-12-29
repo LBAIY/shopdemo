@@ -1,0 +1,10 @@
+<!--miniprogram/pages/addAddress.wxml-->
+<view class="address">
+  <view class="item">姓名<input value="{{address.name}}" data-key="name" bind:input="handleInput" /></view>
+  <view class="item">电话<input value="{{address.telephone}}" data-key="telephone" bind:input="handleInput" /></view>
+  <view class="item">省份<input value="{{address.province}}" data-key="province" bind:input="handleInput" /></view>
+  <view class="item">城市<input value="{{address.city}}" data-key="city" bind:input="handleInput" /></view>
+  <view class="item">地区/县<input value="{{address.area}}" data-key="area" bind:input="handleInput" /></view>
+  <view class="detail">详细地址<textarea placeholder="请在这里填写您的详细地址..." value="{{address.detail}}" data-key="detail" bind:input="handleInput" /></view>
+  <button class="button" bindtap="updateAddress" data-addressid="{{item._id}}">{{buttonText}}</button>
+</view>

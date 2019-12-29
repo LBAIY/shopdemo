@@ -62,7 +62,7 @@
     flex-direction: row;
     margin-top: 20rpx;
 }
-.content .food image{
+.content .food .food_img{
     width: 30%;
     height: 180rpx;
     margin: 10rpx;
@@ -134,4 +134,9 @@
 }
 .cart button{
     margin-right: 60rpx;
+}
+
+.icon{
+    width: 45rpx;
+    height: 45rpx;
 }
