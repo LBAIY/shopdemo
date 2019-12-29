@@ -101,4 +101,5 @@
 .pay_title{
   font-size: 28rpx;
   color: rgb(138, 132, 132);
+  margin-top: 10rpx;
 }
