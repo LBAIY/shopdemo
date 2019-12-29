@@ -215,5 +215,100 @@ export default {
     })
     app.selectCart()
 
+  },
+  //新增订单
+  /* //新增订单详情
+  addressid: 地址的id
+  snacks: {
+    id:商品的id,
+    quantity: 商品的数目
+  }
+  */
+  addOrder: function (addressid, snacks) {
+    
+    var time = this.CurrentTime();
+    var it = this.RndNum(); //新建订单时需要同时调用三个方法
+    var newOrderId = it;
+    // var addressid = 'dbff9fc75e070b2c080dd1e8706c4816'
+    db.collection('order_info').add({
+      data: {
+        _id: newOrderId,
+        telephone: '13788880000',
+        address_id: addressid,
+        total: '23',
+        time: time
+      }
+    }).then(res => {
+      console.log(res)
+      //this.addOrderSnack(newOrderId,snackId),
+      this.addOrderAddress(newOrderId, addressid)
+    }).catch(err => {
+      console.log(err)
+    })
+  },
+  // 获取时间戳
+  CurrentTime: function () {
+    console.log('888888888')
+    var now = new Date();
+    var year = now.getFullYear();       //年
+    var month = now.getMonth() + 1;     //月
+    var day = now.getDate();            //日
+    var hh = now.getHours();            //时
+    var mm = now.getMinutes();          //分
+    var ss = now.getSeconds();           //秒
+
+    var clock = year.toString();
+    if (month < 10) clock += "0";
+    clock += month;
+    if (day < 10) clock += "0";
+    clock += day;
+    if (hh < 10) clock += "0";
+    clock += hh;
+    if (mm < 10) clock += '0';
+    clock += mm;
+    if (ss < 10) clock += '0';
+    clock += ss;
+    return (clock);
+  },
+  // 随机数生成函数
+  RndNum: function () {
+    return Math.random().toString(32).substr(2, 15);
+  },
+  //新增订单数据同时添加订单-地址数据
+  addOrderAddress: function (newOrderId, addressid) {
+    /* var addressname='';
+     var addresstelephone = '';
+     var addressprovince = '';
+     var addresscity = '';
+     var addressarea = '';
+     var addressdetail = '';*/
+    db.collection('address').doc(addressid).get()
+      .then(res => {
+        console.log(res),
+          /* this.setData({
+             addressname:res.data.name,
+             addresstelephone: res.data.telephone,
+             addressprovince: res.data.province,
+             addresscity: res.data.city,
+             addressarea: res.data.area,
+             addressdetail: res.data.detail,
+           })*/
+          db.collection('order_address').add({
+            data: {
+              order_id: newOrderId,
+              address_id: addressid,
+              name: res.data.name,
+              telephone: res.data.telephone,
+              province: res.data.province,
+              city: res.data.city,
+              area: res.data.area,
+              detail: res.data.detail,
+            }
+          }).then(res2 => {
+            console.log(res2)
+          }).catch(err => { console.log(err) })
+      }).catch(err => {
+        console.log(err)
+      });
   }
 }
