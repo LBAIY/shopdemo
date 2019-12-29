@@ -16,9 +16,28 @@ App({
     }
     // 登录
 
+    // 获取商品数据
+    const db = wx.cloud.database()
+    let snacksCollection = db.collection('snack');
+    let snacksList = []
+    for(let i = 0; i < 5; i++){
+      let item = await db.collection('snack')
+        .where({
+          type: i
+        })
+        .orderBy('price', 'desc')
+        .get().then((res) => {
+          return res.data
+      })
+      snacksList.push(item)
+    }
+    
     this.globalData = {
      // cloudRoot: "clo140d-voyz-cloud-86f82a/",
-      carts: [],  //购物车
+      carts: [],
+      cartTotal: 0,
+      cartTotalPrice: 0,
+      classifyList: snacksList, // 商品数据
       tmpNum: 0,
       tempFilePaths: "",
       admin: ["Mr.Voyz"],

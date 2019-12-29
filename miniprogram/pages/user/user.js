@@ -5,7 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
+    list: [
+      { id: '1', title: '编辑资料', link: '/pages/detail/index' },
+      { id: '2', title: '账号绑定设置', link: '' },
+      { id: '3', title: '清除缓存', link: '' },
+      { id: '4', title: '字体大小', link: '' },
+      { id: '5', title: '列表显示摘要', link: '' },
+      { id: '6', title: '离线下载', link: '' },
+      { id: '8', title: '检查版本', link: '' },
+    ],
     hasAddress: false,
+  },
+
+  switchChange(e){
+    console.log('switch发生 change 事件，携带值为', e.detail.value)
+  },
+
+  sliderchange(e) {
+    console.log(`slider发生change事件，携带值为`, e.detail.value)
+  },
+
+  navigateTo(e){
+    const url = e.currentTarget.dataset.link
+    if(url){
+      wx.navigateTo({
+        url
+      })
+    }
   },
 
   /**
@@ -14,53 +40,4 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

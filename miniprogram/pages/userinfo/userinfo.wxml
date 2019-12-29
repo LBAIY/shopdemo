@@ -1,0 +1,3 @@
+<!--miniprogram/pages/userinfo/userinfo.wxml-->
+<text>miniprogram/pages/userinfo/userinfo.wxml</text>
+<button bindtap="updateUserInfo">修改个人资料</button>

@@ -58,7 +58,7 @@ Page({
   },
   //更新地址
   updataAddress:function(e){
-    db.collection('user').doc('')
+    db.collection('address').doc('')
     .update({
       data: {
         name: '',
