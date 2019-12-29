@@ -99,7 +99,9 @@ export default {
     const _ = db.command
     const snack_id = id // 零食的id 0 1 2 3 4 。。。
     const openid = app.globalData.openId
-
+    wx.showLoading({
+      title: '添加中',
+    })
     await db.collection('cart').where({
       snack_id: snack_id,
       _openid: openid
@@ -121,6 +123,7 @@ export default {
                   title: '成功加入购物车'
                 })
                 console.log('购物车数量+1')
+                wx.hideLoading()
               },
               fail: function (res) {
                 wx.showToast({
@@ -128,6 +131,7 @@ export default {
                   title: '加入购物车失败'
                 })
                 console.log('购物车数量+1失败')
+                wx.hideLoading()
               }
             })
         }
@@ -155,18 +159,21 @@ export default {
                 title: '成功加入购物车'
               })
               console.log('成功加入购物车', res);
+              wx.hideLoading()
             }).catch(err => {
               wx.showToast({
                 icon: 'none',
                 title: '加入购物车失败'
               })
               console.log(err);
+              wx.hideLoading()
             })
           })
         }
       },
       fail(err) {
         console.log(err);
+        wx.hideLoading()
       }
     })
 
@@ -177,6 +184,9 @@ export default {
     var openid = app.globalData.openId
     const _ = db.command
     var snack_id = id     //前端的data-index
+    wx.showLoading({
+      title: '减少中',
+    })
     await db.collection('cart').where({
       snack_id: snack_id,
       _openid: openid
@@ -201,6 +211,9 @@ export default {
                 quantity: _.inc(-1)
               },
               success: function (res) {
+                wx.showToast({
+                  title: '成功减少',
+                })
                 console.log('购物车数量-1')
               },
               fail: function (res) {
@@ -213,8 +226,9 @@ export default {
         console.log(err);
       }
     })
-    app.selectCart()
+    wx.hideLoading()
 
+    app.selectCart()
   },
   //新增订单
   /* //新增订单详情

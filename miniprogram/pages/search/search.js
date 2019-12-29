@@ -1,3 +1,5 @@
+const db = wx.cloud.database();
+const app = getApp()
 Page({
   data: {
     logs: [],
@@ -41,6 +43,7 @@ Page({
     this.addToCart(_id)
   },
   addToCart: function (id) {
+    
     const _ = db.command
     const snack_id = id
     const openid = app.globalData.openId

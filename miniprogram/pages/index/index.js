@@ -80,7 +80,9 @@ Page({
     const _ = db.command
     const snack_id = id
     const openid  = app.globalData.openId
-
+    wx.showLoading({
+      title: '添加中',
+    })
     db.collection('cart').where({
       snack_id: snack_id,
       _openid: openid
@@ -97,6 +99,7 @@ Page({
                 //自减1为：_.inc(-1)
               },
               success: function (res) {
+                wx.hideLoading()
                 wx.showToast({
                   icon: 'none',
                   title: '成功加入购物车'
@@ -104,6 +107,7 @@ Page({
                 console.log('购物车数量+1')
               },
               fail:function(res){
+                wx.hideLoading()
                 wx.showToast({
                   icon: 'none',
                   title: '加入购物车失败'
@@ -131,17 +135,20 @@ Page({
                 quantity:1 //加入购物车的数量
               }
             }).then(res => {
+              wx.hideLoading()
               wx.showToast({
                 icon: 'none',
                 title: '成功加入购物车'
               })
               console.log('成功加入购物车',res);
             }).catch(err => {
+              wx.hideLoading()
               wx.showToast({
                 icon: 'none',
                 title: '加入购物车失败'
               })
               console.log(err);
+
             })
           })
         }
@@ -150,6 +157,7 @@ Page({
         console.log(err);
       }
     })
+    
   },          
   
 })
