@@ -14,7 +14,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
 
     console.log("跳转至购物车")
     this.setData({
@@ -77,7 +77,7 @@ Page({
     for (let key of carts) {
       if (key.cartSelected) {
         num += key.num;
-        totalPrice += key.num * key.price;
+        totalPrice += key.quantity * key.price;
       }
     }
     this.setData({
@@ -106,7 +106,7 @@ Page({
     for (let key of carts) {
       if (key.cartSelected) {
         num += key.num;
-        totalPrice += key.num * key.price;
+        totalPrice += key.quantity * key.price;
       }
     }
     this.setData({
@@ -136,7 +136,7 @@ Page({
     for (let key of carts) {
       if (key.cartSelected) {
         num += key.num;
-        totalPrice += key.num * key.price;
+        totalPrice += key.quantity * key.price;
       }
     }
     console.log(totalPrice);
@@ -171,7 +171,7 @@ Page({
     for (let key of carts) {
       if (key.cartSelected) {
         num += key.num;
-        totalPrice += key.num * key.price;
+        totalPrice += key.quantity * key.price;
       }
     }
 
