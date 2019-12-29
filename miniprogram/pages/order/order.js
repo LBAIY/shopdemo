@@ -1,11 +1,11 @@
-// pages/user/user.js
+// miniprogram/pages/order/order.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    hasAddress: false,
+
   },
 
   /**

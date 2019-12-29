@@ -36,11 +36,30 @@ App({
     }
     
     this.globalData = {
+      //用户
+      openId:null,
       // 购物车数据
       carts: [],
       cartTotal: 0,
       cartTotalPrice: 0,
       classifyList: snacksList // 商品数据
     }
+
+    
+  },
+
+  //获取用户openid
+    getOpenId: function () {
+    wx.cloud.callFunction({
+      name: 'login'
+    }).then(res => {
+      console.log(res);
+      this.setData({
+        openid: res.result._openid
+      });
+    }).catch(err => {
+      console.log(err);
+    })
   }
+  
 })

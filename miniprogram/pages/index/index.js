@@ -57,9 +57,51 @@ Page({
         readed: 123,
         collected: 666
       }
-    ]
+    ],
+
+    snacklist:[]
   },
-  onLoad: function () {
+
+ getSnackList: function () {
+   const db = wx.cloud.database()
+     db.collection('snacks').get({
+      success: res => {
+        this.setData({
+          snacklist: res.data
+        })
+        console.log(res.data);
+      },
+      fail: console.error
+
+
+    })
+  },
+
+  /*onLoad() {
+    var self = this;
+    wx.getStorage({
+      key: 'address',
+      success: function (res) {
+        self.setData({
+          address: res.data
+        })
+      }
+    })
+
+  },
+  */
+  onLoad() {
+    var _this=this;
+    const db=wx.cloud.database()
+    db.collection('snacks').get({
+      success:res=>{
+        conclose.log(res);
+        this.setData({
+          snacklist:res.data
+        })
+      }
+    })
     
   }
+  
 })
