@@ -15,6 +15,13 @@ Page({
       { id: '8', title: '检查版本', link: '' },
     ],
     hasAddress: false,
+    payList: [
+      { id: 0, imgUrl: '../../images/pay/dingdan.png', title: '全部订单' },
+      { id: 1, imgUrl: '../../images/pay/daifukuan.png', title: '待付款' },
+      { id: 2, imgUrl: '../../images/pay/daishouhuo.png', title: '待收货' },
+      { id: 3, imgUrl: '../../images/pay/daipingjia.png', title: '待评价' },
+      { id: 4, imgUrl: '../../images/pay/tuihuanhuo.png', title: '退换/售后' },
+    ],
   },
 
   switchChange(e){

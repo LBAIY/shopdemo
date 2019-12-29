@@ -19,7 +19,21 @@ Page({
     ],
     snacklist:[],
     tabList: [
-      { id: 0, imgUrl: '', title: '' },
+      { id: 0, imgUrl: '../../images/categoryList/shipincanyinzizhi.png', title: '首页食品' },
+      { id: 1, imgUrl: '../../images/categoryList/-fen-.png', title: '冷冻食品' },
+      { id: 2, imgUrl: '../../images/categoryList/shipin-mangguo.png', title: '水果' },
+      { id: 3, imgUrl: '../../images/categoryList/shipin_buding.png', title: '甜点' },
+      { id: 8, imgUrl: '../../images/categoryList/chongwushipin.png', title: '宠物食品' },
+      { id: 9, imgUrl: '../../images/categoryList/kcb_hangyeicon-.png', title: '行业标准' },
+      { id: 10, imgUrl: '', title: '' },
+      { id: 11, imgUrl: '', title: '' },
+    ],
+    tabList1: [
+      { id: 4, imgUrl: '../../images/categoryList/shipin_hanbao.png', title: '膨化食品' },
+      { id: 5, imgUrl: '../../images/categoryList/shipin_niunai.png', title: '饮品' },
+      { id: 6, imgUrl: '../../images/categoryList/shipin_shucai.png', title: '蔬菜' },
+      { id: 7, imgUrl: '../../images/categoryList/shipin_tangguo.png', title: '糖果' },
+      
     ]
   },
 
