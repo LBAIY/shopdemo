@@ -1,2 +1,24 @@
 <!--miniprogram/pages/detail/detail.wxml-->
-<text>miniprogram/pages/detail/detail.wxml</text>
+<view class="page">
+  <view class="header">
+    <image class="header_img" src="{{detail.img}}" />
+  </view>
+  <view class="main">
+    <view class="main_title">{{detail.title}}</view>
+    <view class="main_sub">月售{{detail.mouthNum}}</view>
+    <view class="main_content">
+      <text class="main_text">￥{{detail.price}}</text>
+      <view class="main_add" bind:tap="handleAdd">加入购物车</view>
+    </view>
+  </view>
+  <view class="footer">
+    <view class="title">商品详情</view>
+    <view class="footer_text">
+      30包30天，每天都有新可能。每天都有新感觉、新体验，享受每日坚果，此刻美好新品，如你所愿。7种科学搭配，营养均衡全面。*^_^*
+    </view>
+    <view class="footer_item" wx:for="{{detail.list}}">
+      <text class="footer_title">{{item.title}}: </text>
+      <text class="footer_content">{{item.content}}</text>
+    </view>
+  </view>
+</view>

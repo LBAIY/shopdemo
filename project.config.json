@@ -119,6 +119,12 @@
 					"pathName": "pages/about/about",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "详情页",
+					"pathName": "pages/detail/detail",
+					"scene": null
 				}
 			]
 		}

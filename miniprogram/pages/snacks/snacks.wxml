@@ -23,7 +23,7 @@
             <view class="food">
                 <image class="food_img" src="{{item.url}}" />
                 <view class="mes">
-                    <text class="foodName">{{item.name}}</text>
+                    <view class="foodName">{{item.name}}</view>
                     <text class="foodIntroduce">{{item.introduce}}</text>
                     <view class="special">特价</view>
                     <p class="price">￥{{item.price}}</p>

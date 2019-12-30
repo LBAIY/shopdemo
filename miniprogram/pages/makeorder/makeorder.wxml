@@ -2,8 +2,8 @@
 <view class="container">
   <view class="content">
     <!-- <view bindtap="goToAddress" class="address-box"> -->
-      <scroll-view scroll-y="true" style="height: 10vh;">
-        <view class="address-box" bindtap="selectAddress">
+      <scroll-view scroll-y="true" style="height: 10vh;" bindtap="selectAddress">
+        <view class="address-box">
           <view >送货地址:</view>
           <view class="address-font" bindtap="searchOneAddress" >
           {{orderAddress.city}}
