@@ -1,0 +1,40 @@
+
+<!--pages/order/order.wxml-->
+<view class="shopping">
+</view>
+<view class="list">
+<button bindtap="searchUnpaidOrder">查看我的'待支付'订单</button>
+    <block class="list-item" wx:for="{{order}}"wx:if="{{order.length>0}}" wx:key="{{item._id}}"> 
+          <text class="title">{{item.telephone}}</text>
+          <view class="sn">
+          {{item._id}}
+          {{item.time}}
+          {{item.total}}
+          {{item.addressid}}  
+          {{item.statusid}}         
+          </view>
+          <button bindtap="orderDetail" data-orderid="{{item._id}}">查看订单详情</button>         
+    </block>
+    <view >
+    <view>{{item._id}}</view>
+    <view>{{item.telephone}}</view>
+    <view>{{item.time}}</view>
+    <view>{{item.total}}</view>
+    <view>{{item.address_id}}</view>
+    <view>{{address[0].name}}</view>
+    <view>{{address[0].province}}</view>
+    <view>{{address[0].city}}</view>
+    <view>{{address[0].area}}</view>
+    <view>{{address[0].detail}}</view>
+    <view wx:for="{{orderSnack}}">
+    <view><image src="{{item.url}}"></image></view>
+    <view>名称：{{item.name}}</view>
+    <view>介绍：{{item.introduce}}</view>
+    <view>价格：{{item.price}}</view>
+    <view>数量：{{item.quantity}}</view>
+    </view>
+    </view>
+    <!--<button bindtap="addOrder">添加订单（测试用）</button>-->
+  </view>  
+
+
