@@ -75,15 +75,19 @@
     position: relative;
 }
 .content .food .mes .foodName{
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
-    font-size: 35rpx;  
+    left: 0; */
+    font-size: 35rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 350rpx;
 }
 .content .food .mes .foodIntroduce{
-    position: absolute;
+    /* position: absolute;
     top: 50rpx;
-    left: 0;
+    left: 0; */
     color: rgb(185, 161, 161);
     font-size: 28rpx;  
 }

@@ -32,7 +32,7 @@
   <view class="list">
   <!-- <button bindtap="getSnackList">获取商品列表</button> -->
     <view class="list-item" wx:for="{{snacklist}}" wx:key="_id">       
-      <image class="img" src="{{item.url}}" ></image> 
+      <image class="img" src="{{item.url}}" data-id="{{item._id}}" bind:tap="handleToDetail" ></image> 
       <text class="title">{{item.name}}</text>
       <view class="footer">
         <view class="sn">￥{{item.price}}</view>

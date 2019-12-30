@@ -28,7 +28,7 @@
   <view class="rate">
     <view class="item_rate">软件评分</view>
     <view class="body-view">
-      <slider bindchange="sliderchange" show-value/>
+      <slider bindchange="sliderchange" value="85" show-value/>
     </view>
     
   </view>

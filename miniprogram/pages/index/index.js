@@ -9,7 +9,7 @@ Page({
     banner: [
       {
         id:1,
-        url:"https://s3.cdn.xiangha.com/caipu/201707/031210164843.jpg/MHgw"
+        url:"http://gdp.alicdn.com/imgextra/i2/3710559875/O1CN01xcHr262MonjAmXkJ4_!!3710559875.jpg"
       },{
         id:2,
         url:"https://s3.cdn.xiangha.com/caipu/201707/031455386879.jpg/MHgw"
@@ -200,5 +200,12 @@ Page({
       }
     });
   },
+
+  handleToDetail(e){
+    const _id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/detail/detail?id=${_id}`,
+    })
+  }
   
 })
