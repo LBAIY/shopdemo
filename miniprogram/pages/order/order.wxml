@@ -3,8 +3,20 @@
 <view class="shopping">
 </view>
 <view class="list">
-<button bindtap="searchOrder">查看我的所有订单</button>
-    <block class="list-item" wx:for="{{order}}"wx:if="{{order.length>0}}" wx:key="{{item._id}}"> 
+    <!-- <view bindtap="searchAddress">查看我的所有地址</view> -->
+    <view class="list-item" wx:for="{{order}}" wx:key="{{item._id}}" data-id="{{item._id}}" bind:tap="navigateTo">
+      <!-- <text class="name">{{item.name}}</text> -->
+      <text class="phone">{{item.telephone}}</text>
+      <view class="sn">
+        <text>订单id:{{item._id}}</text>
+        <text>订单时间：{{item.time}}</text>
+        <text>订单总件数：{{item.total}}</text>
+        <!-- <text>地址id：{{item.address_id}} </text>         -->
+      </view>
+      <button bindtap="orderDetail" data-orderid="{{item._id}}">查看订单详情</button>
+    </view>
+<!-- <button bindtap="searchOrder">查看我的所有订单</button> -->
+    <!-- <block class="list-item" wx:for="{{order}}" wx:key="{{item._id}}"> 
           <text class="title">{{item.telephone}}</text>
           <view class="sn">
           {{item._id}}
@@ -13,8 +25,8 @@
           {{item.addressid}}          
           </view>
           <button bindtap="orderDetail" data-orderid="{{item._id}}">查看订单详情</button>         
-    </block>
-    <view >
+    </block> -->
+    <!-- <view >
     <view>{{item._id}}</view>
     <view>{{item.telephone}}</view>
     <view>{{item.time}}</view>
@@ -26,13 +38,13 @@
     <view>{{address[0].area}}</view>
     <view>{{address[0].detail}}</view>
     <view wx:for="{{orderSnack}}">
-    <view><image src="{{item.url}}"></image></view>
-    <view>名称：{{item.name}}</view>
-    <view>介绍：{{item.introduce}}</view>
-    <view>价格：{{item.price}}</view>
-    <view>数量：{{item.quantity}}</view>
+      <view><image src="{{item.url}}"></image></view>
+      <view>名称：{{item.name}}</view>
+      <view>介绍：{{item.introduce}}</view>
+      <view>价格：{{item.price}}</view>
+      <view>数量：{{item.quantity}}</view>
     </view>
-    </view>
+    </view> -->
     <!--<button bindtap="addOrder">添加订单（测试用）</button>-->
   </view>  
 

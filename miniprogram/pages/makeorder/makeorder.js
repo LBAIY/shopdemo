@@ -98,9 +98,20 @@ order: [],
             }
           }).then(res2 => {
             console.log(res2)
-          }).catch(err => { console.log(err) })
+            wx.hideLoading()
+            wx.showToast({
+              title: '提交成功',
+            })
+          }).catch(err => { 
+            console.log(err)
+            wx.hideLoading()
+            wx.showToast({
+              title: '提交出错',
+            })
+         })
       }).catch(err => {
         console.log(err)
+        wx.hideLoading()
       });
   },
   //删除购物车中对应商品记录
@@ -217,6 +228,9 @@ order: [],
     console.log('addressid', addressid)
     console.log('snacks', snacks)
     console.log('total', total)
+    wx.showLoading({
+      title: '提交订单中',
+    })
     this.addOrder(addressid, snacks,total)
   },
 

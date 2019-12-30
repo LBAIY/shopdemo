@@ -13,13 +13,13 @@ Page({
   data: {
     order:[],
     order_id:null,
-    order:{
-      order_id:null,
-      telephone:'',
-      address_id:'',
-      total:'',
-      time:''
-    },
+    // order:{
+    //   order_id:null,
+    //   telephone:'',
+    //   address_id:'',
+    //   total:'',
+    //   time:''
+    // },
     orderAddress:[],
     orderSnack:[]
   },
@@ -29,6 +29,7 @@ Page({
     wx.cloud.callFunction({
       name: 'login'
     }).then(res => {
+      console.log('openid', res.result.openid)
       db.collection('order_info').where({
         _openid: res.result.openid
       }).get().then(res2 => {
@@ -56,11 +57,11 @@ Page({
       }
     }).then(res => {
         console.log(res)
-        // for(var i;i<ordersnack.length;i++){  //循环前端传入的商品数组（包括商品_id：值设为snack_id,商品数量quantity：值为quantity）
-        //   var snackId=ordersnack[i].snack_Id
-        //   var quantity=ordersnack[i].quantity
-        //   this.addOrderSnack(newOrderId,snackId,quantity)
-        // }
+        for(var i;i<ordersnack.length;i++){  //循环前端传入的商品数组（包括商品_id：值设为snack_id,商品数量quantity：值为quantity）
+          var snackId=ordersnack[i].snack_Id
+          var quantity=ordersnack[i].quantity
+          this.addOrderSnack(newOrderId,snackId,quantity)
+        }
       this.addOrderAddress(newOrderId,addressid)
       }).catch(err => {
         console.log(err)
@@ -133,12 +134,15 @@ Page({
   //查看订单详情（三个方法同时进行）
   //查看订单详情(不包商品)
   orderDetail:function(event){
-    var orderid=event.target.dataset.orderid;   
+    var orderid=event.target.dataset.orderid;
+    wx.navigateTo({
+      url: `/pages/orderdetail/orderdetail?orderid=${orderid}`,
+    })   
     db.collection('order_info').doc(orderid)
     .get().then(res=>{
       console.log(res);
       this.setData({       
-        item:res.data
+        item:res.data,
       })
       this.orderDetailSnack(orderid);//同时获取订单-商品
       this.orderDetailAddress(orderid);//同时获取订单-地址
@@ -241,6 +245,7 @@ Page({
       //页面加载时就给购物车显示商品数量
       goodsList: cardList
     })
+    this.searchOrder()
   },
   toSort: function () {
     wx.switchTab({

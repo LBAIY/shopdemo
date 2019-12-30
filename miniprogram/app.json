@@ -14,7 +14,8 @@
     "pages/selectaddress/selectaddress",
     "pages/addAddress/addAddress",
     "pages/detail/detail",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/orderdetail/orderdetail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

@@ -1,0 +1,39 @@
+<!--miniprogram/pages/orderdeail/orderdetail.wxml-->
+   <!-- <view wx:for="{{orderSnack}}">
+      <view><image src="{{item.url}}"></image></view>
+      <view>名称：{{item.name}}</view>
+      <view>介绍：{{item.introduce}}</view>
+      <view>价格：{{item.price}}</view>
+      <view>数量：{{item.quantity}}</view>
+    </view> -->
+<view class="container content">
+<scroll-view scroll-y="true" style="height: 80vh;">
+  <block wx:for="{{orderSnack}}" wx:key = "index">
+      <view class="food">
+          <image src="{{item.url}}" />
+          <view class="mes">
+              <text class="foodName">{{item.name}}</text>
+              <text class="foodIntroduce">{{item.introduce}}</text>
+              <view class="special">特价</view>
+              <p>￥{{item.price}}</p>
+  <view class="number">
+              <!-- <view class="reduce" bindtap="reduceItems" data-id="{{item.id}}">
+                  -
+              </view> -->
+              <view class="num">
+
+                数量： {{item.quantity}}
+              </view>
+              <!-- <view class="add" bindtap="addItems" data-id="{{item.id}}">
+                  +
+              </view> -->
+              </view>
+          </view>
+      </view>
+      <!-- <view class="subtotal">
+          小计:
+          <text>￥{{item.price*item.quantity}}</text>
+      </view> -->
+  </block>
+</scroll-view>
+</view>
