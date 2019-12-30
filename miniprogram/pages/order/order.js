@@ -20,14 +20,14 @@ Page({
     //   total:'',
     //   time:''
     // },
-    order:{
-      order_id:null,
-      telephone:'',
-      address_id:'',
-      total:'',
-      time:'',
-      status:''
-    },
+    // order:{
+    //   order_id:null,
+    //   telephone:'',
+    //   address_id:'',
+    //   total:'',
+    //   time:'',
+    //   status:''
+    // },
     orderAddress:[],
     orderSnack:[]
   },

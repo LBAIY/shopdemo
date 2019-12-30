@@ -10,7 +10,8 @@ Page({
    */
   data: {
     orderSnack: [],
-    item:[]
+    item:[],
+    address:[]
   },
 
   /**
@@ -34,11 +35,11 @@ Page({
   },
   //查看订单详情-商品
   orderDetailSnack: function (orderid) {
-    this.orderSnack = [];
+    // this.orderSnack = [];
     db.collection('order_snacks').where({
       order_id: orderid
     }).get().then(res => {
-      console.log(res),
+      console.log('orderDetailSnack',res),
         this.setData({
           orderSnack: res.data
         })

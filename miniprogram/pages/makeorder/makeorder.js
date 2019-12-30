@@ -124,6 +124,10 @@ order: [],
             wx.showToast({
               title: '提交成功',
             })
+              wx.navigateTo({
+                url: '../index/index',
+            })
+           
           }).catch(err => { 
             console.log(err)
             wx.hideLoading()

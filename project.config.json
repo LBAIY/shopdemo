@@ -122,8 +122,9 @@
 				},
 				{
 					"id": -1,
-					"name": "详情页",
-					"pathName": "pages/detail/detail",
+					"name": "pages/orderdetail/orderdetail",
+					"pathName": "pages/orderdetail/orderdetail",
+					"query": "orderid=dn47h1fj42o",
 					"scene": null
 				}
 			]
