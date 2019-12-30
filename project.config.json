@@ -112,6 +112,13 @@
 					"pathName": "pages/myCart/myCart",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "关于我们",
+					"pathName": "pages/about/about",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

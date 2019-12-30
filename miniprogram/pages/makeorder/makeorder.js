@@ -1,6 +1,7 @@
 // miniprogram/pages/makeorder/makeorder.js
 import utils from '../../util/util.js'
 const app = getApp()
+const db = wx.cloud.database();//初始化数据库
 Page({
 
   /**
@@ -22,30 +23,34 @@ order: [],
       time: ''
     },
     orderAddress: [],
-    orderSnack: []
+    orderSnack: [],
+    addressid:''
   },
 
   //新增订单
   //新增订单详情
-  addOrder: function () {
+  addOrder: function (addressid,snacks,total) {
     var time = this.CurrentTime();
     var it = this.RndNum(); //新建订单时需要同时调用三个方法
     var newOrderId = it;
-    var addressid = 'dbff9fc75e070b2c080dd1e8706c4816'
     db.collection('order_info').add({
       data: {
         _id: newOrderId,
         address_id: addressid,
-        total: '23',
+        total: total,
         time: time
       }
     }).then(res => {
       console.log(res)
-      // for(var i;i<ordersnack.length;i++){  //循环前端传入的商品数组（包括商品_id：值设为snack_id,商品数量quantity：值为quantity）
-      //   var snackId=ordersnack[i].snack_Id
-      //   var quantity=ordersnack[i].quantity
-      //   this.addOrderSnack(newOrderId,snackId,quantity)
-      // }
+      for(var i=0;i<snacks.length;i++){  //循环前端传入的商品数组（包括商品_id：值设为snack_id,商品数量quantity：值为quantity）
+        var snackId=snacks[i].snack_id
+        var quantity=snacks[i].quantity
+        var deleteSnack_id=snacks[i]._id
+        console.log(snackId)
+        console.log(quantity)
+        this.addOrderSnack(newOrderId,snackId,quantity)
+        this.deleteOrderSnack(deleteSnack_id)
+      }
       this.addOrderAddress(newOrderId, addressid)
     }).catch(err => {
       console.log(err)
@@ -68,8 +73,7 @@ order: [],
               quantity: quantity
             }
           }).then(res2 => {
-            console.log(res2),
-              this.deleteOrderSnack(snackId)
+            console.log(res2)
           }).catch(err => {
             console.log(err)
           })
@@ -100,18 +104,28 @@ order: [],
       });
   },
   //删除购物车中对应商品记录
-  deleteOrderSnack: function (snackId) {
+  deleteOrderSnack: function (deleteSnack_id) {
     wx.cloud.callFunction({
       name: 'login'
     }).then(res => {
-      db.collection('cart').where({
-        _openid: res.result.openid,
-        snacks_id: snackid
-      }).remove().then(res2 => {
+      db.collection('cart').doc(deleteSnack_id).remove().then(res2 => {
         console.log(res2)
       }).catch(err => {
         console.log(err)
       })
+    })
+  },
+  //查看某一地址
+  searchOneAddress:function(){
+    //var addressid=event.target.dataset.addressid
+    db.collection('address').doc(this.data.addressid)
+    .get().then(res=>{
+      console.log('选择地址',res),
+      this.setData({
+        orderAddress:res.data
+      })
+    }).catch(err=>{
+      console.log(err)
     })
   },
 
@@ -174,15 +188,20 @@ order: [],
    */
   onLoad: function (options) {
     this.setData({
-      cart: app.globalData.carts
+      cart: app.globalData.carts,
+      addressid: options.addressid
+      // cartTotalPrice: app.globalData.cartTotalPrice
     })
+    this.totalMoney()
+    
+    //console.log(options.addressid)
   },
   selectAddress: function() {
     wx.navigateTo({
       url: '../address/address?type=2',
     })
   },
-
+  //提交订单
   submitOrder:function() {
     /* //新增订单详情
       addressid: 地址的id
@@ -194,11 +213,24 @@ order: [],
     */
     let addressid = this.data.address._id
     let snacks = this.data.cart
+    let total=this.data.cartTotalPrice
     console.log('addressid', addressid)
     console.log('snacks', snacks)
-    utils.addOrder(addressid, snacks)
+    console.log('total', total)
+    this.addOrder(addressid, snacks,total)
   },
 
+  totalMoney() {
+    const cart = app.globalData.carts
+    let total = 0
+    for(let item of cart) {
+      console.log(item)
+      total += item.quantity*item.price
+    }
+    this.setData({
+      cartTotalPrice: total
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -210,7 +242,7 @@ order: [],
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.data.addressid && this.searchOneAddress()
   },
 
   /**

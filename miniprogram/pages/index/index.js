@@ -64,6 +64,14 @@ Page({
     })
   },
 
+  onShareAppMessage: function () {
+    return {
+      title: '听说今日有极大优惠！快来看看',
+      path: '/pages/index/index',
+      imageUrl: 'http://pic38.nipic.com/20140302/4719186_233831238384_2.jpg'
+    }
+  },
+
   handleSelect(e){
     // const ind = e.currentTarget.dataset.ind
     // const selected = e.currentTarget.dataset.selected
@@ -76,6 +84,10 @@ Page({
     const _id = e.currentTarget.dataset.id
     // this.addToCart(_id)
     updateCart(_id, 1)
+    wx.showToast({
+      icon: 'none',
+      title: '成功加入购物车'
+    })
   },
 
   addToCart:function(id){
@@ -159,7 +171,34 @@ Page({
         console.log(err);
       }
     })
-    
-  },          
+  },
+  
+  handleScanner(){
+    wx.scanCode({
+      onlyFromCamera: false,
+      scanType: ['barCode', 'qrCode', 'datamatrix','pdf417'],
+      success: res => {
+        if(res.errMsg == 'scanCode:ok'){
+          wx.showToast({
+            icon: 'none',
+            title: '扫码成功',
+            // content: res
+          })
+          // wx.navigateTo({
+            // url: '../../pages/search/search?keyword=' + res.result
+          // })
+        }
+      },
+      fail: res => {
+        wx.showToast({
+          icon: 'none',
+          title: '网络差劲，请稍后重试！'
+        })
+      },
+      complete: res => {
+        console.log(res)
+      }
+    });
+  },
   
 })

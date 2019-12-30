@@ -1,6 +1,25 @@
 //app.js
 App({
   onLaunch: async function () {
+
+    wx.login({
+      success (res) {
+        if (res.code) {
+          wx.showToast({
+            title: '登录成功'
+          })
+          //发起网络请求
+          // wx.request({
+          //   url: 'https://test.com/onLogin',
+          //   data: {
+          //     code: res.code
+          //   }
+          // })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
+      }
+    })
     
     if (!wx.cloud) {
       console.error('请使用 2.2.3 或以上的基础库以使用云能力')

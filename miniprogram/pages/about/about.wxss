@@ -1,0 +1,12 @@
+/* miniprogram/pages/about/about.wxss */
+.address{
+  padding: 30rpx;
+}
+.btn{
+  float: left;
+  text-align: left;
+  padding-left: 30rpx;
+  padding-right: 0;
+  margin: 0;
+  color: cadetblue;
+}
