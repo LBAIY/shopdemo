@@ -115,7 +115,7 @@ Page({
         },
         success: function (res) {
           console.log('更新成功', res)
-         /* wx.showToast({
+         /*wx.showToast({
             icon: 'none',
             title: '更新成功'
           })
@@ -127,7 +127,7 @@ Page({
         },
         fail: function (res) {
           console.log('更新失败', res)
-         /* wx.showToast({
+          /*wx.showToast({
             icon: 'none',
             title: '更新失败'
           })*/
