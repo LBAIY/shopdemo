@@ -121,12 +121,10 @@ order: [],
           }).then(res2 => {
             console.log(res2)
             wx.hideLoading()
-            wx.showToast({
-              title: '提交成功',
-            })
-              wx.navigateTo({
-                url: '../index/index',
-            })
+            // wx.showToast({
+            //   title: '提交成功',
+            // })
+            this.selectAddress1()
            
           }).catch(err => { 
             console.log(err)
@@ -236,6 +234,12 @@ order: [],
   selectAddress: function() {
     wx.navigateTo({
       url: '../address/address?type=2',
+    })
+  },
+  selectAddress1: function() {
+    console.log('navigate')
+    wx.switchTab({
+      url: '/pages/index/index',
     })
   },
   //提交订单

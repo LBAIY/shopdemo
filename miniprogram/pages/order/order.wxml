@@ -6,7 +6,7 @@
     <!-- <view bindtap="searchAddress">查看我的所有地址</view> -->
     <view class="list-item" wx:for="{{order}}" wx:key="{{item._id}}" data-id="{{item._id}}" bind:tap="navigateTo">
       <!-- <text class="name">{{item.name}}</text> -->
-      <text class="phone">{{item.telephone}}</text>
+      <!-- <text class="phone">{{item.telephone}}</text> -->
       <view class="sn">
         <text>订单id:{{item._id}}</text>
         <text>订单时间：{{item.time}}</text>
